@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>秋の優光泉 味くらべフェア｜飲みくらべBOX 期間限定｜断食道場</title>
+<meta name="description" content="スタンダード味と梅味、ふたつの優光泉を小さなボトルで飲みくらべ。はじめての方にも、いつもと違う味を試したい方にも。秋の期間限定、飲みくらべBOX。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kaisei+Opti:wght@400;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Josefin+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   秋の優光泉 味くらべフェア ／ 飲みくらべBOX（提案用ドラフト）
+   ・主役モチーフは「ふたつのグラス」。スタンダード＝琥珀、梅＝梅紫
+   ・色はすべて :root のトークンで管理
+   ・未確定の情報は .tbd（点線下線＋「要確定」）で表示。公開前に差し替え
+   ========================================================= */
+:root{
+  --paper:#F3ECE1;      /* 生成りの和紙（地色） */
+  --paper-deep:#E9DFD0;
+  --ink:#2A1E17;
+  --muted:#76665A;
+  --line:#D3C5B1;
+  --amber:#8C5A2A;      /* スタンダード味：酵素の琥珀色 */
+  --amber-soft:#EAD9C0;
+  --plum:#8B2E42;       /* 梅味：熟した梅の紫紅 */
+  --plum-soft:#F0DCDC;
+  --white:#FFFDF9;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Zen Kaku Gothic New",sans-serif;
+  font-size:17px;
+  line-height:1.9;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+.sp{display:none}
+.opti{font-family:"Kaisei Opti",serif}
+.en{font-family:"Josefin Sans",sans-serif;letter-spacing:.14em}
+.amber{color:var(--amber)}
+.plum{color:var(--plum)}
+
+/* 未確定情報（提案用） */
+.tbd{
+  border-bottom:1.5px dashed currentColor;
+  padding-bottom:1px;
+}
+.tbd::after{
+  content:"要確定";
+  font-family:"Zen Kaku Gothic New",sans-serif;
+  display:inline-block;white-space:nowrap;line-height:1.6;
+  font-size:11px;font-weight:700;letter-spacing:.08em;
+  color:var(--white);background:#B0563B;
+  padding:1px 6px;margin-left:6px;vertical-align:3px;
+  border-radius:2px;
+}
+
+/* ---------------- 提案ドラフト帯 ---------------- */
+.draftbar{
+  background:var(--ink);color:var(--paper);
+  font-size:13px;letter-spacing:.06em;text-align:center;padding:8px 16px;
+}
+
+/* ---------------- FV ---------------- */
+.fv{
+  position:relative;
+  max-width:1240px;margin:0 auto;
+  min-height:calc(100vh - 36px);
+  padding:56px 56px 72px;
+  display:grid;
+  grid-template-columns:1.1fr auto auto;
+  grid-template-rows:auto 1fr auto;
+  column-gap:56px;
+}
+.fv-shop{grid-column:1 / -1;font-size:14px;letter-spacing:.2em;color:var(--muted)}
+.fv-copy{
+  grid-column:1;grid-row:2;
+  align-self:center;
+  display:flex;gap:40px;align-items:flex-start;
+}
+.fv-title{
+  writing-mode:vertical-rl;
+  font-family:"Kaisei Opti",serif;font-weight:700;
+  font-size:clamp(48px,4.8vw,72px);
+  line-height:1.35;letter-spacing:.12em;
+  white-space:nowrap;
+}
+.fv-title .q{color:var(--plum)}
+.fv-side{
+  writing-mode:vertical-rl;
+  font-size:17px;letter-spacing:.24em;line-height:2.2;color:var(--muted);
+  padding-top:12px;
+}
+.fv-side b{color:var(--ink);font-weight:700}
+
+.glass-wrap{grid-row:2;align-self:end;text-align:center}
+.glass-wrap.g2{margin-bottom:-28px}
+.glass{
+  position:relative;
+  width:clamp(150px,15vw,210px);
+  height:min(52vh,460px);
+  border:2px solid var(--ink);border-top:none;
+  border-radius:0 0 30px 30px;
+  overflow:hidden;
+  background:rgba(255,253,249,.55);
+}
+.glass::before{ /* グラスの縁 */
+  content:"";position:absolute;top:0;left:-2px;right:-2px;height:2px;
+  background:linear-gradient(90deg,var(--ink) 0 14px,transparent 14px calc(100% - 14px),var(--ink) calc(100% - 14px));
+}
+.liquid{
+  position:absolute;left:0;right:0;bottom:0;height:74%;
+  display:flex;justify-content:center;padding-top:28px;
+  transform-origin:bottom;
+  animation:pour 1.6s cubic-bezier(.3,.7,.2,1) both;
+}
+.g2 .liquid{animation-delay:.35s;height:68%}
+.liquid.amber-bg{background:var(--amber)}
+.liquid.plum-bg{background:var(--plum)}
+.liquid span{
+  writing-mode:vertical-rl;
+  font-family:"Kaisei Opti",serif;font-weight:700;
+  color:var(--white);font-size:clamp(24px,2.2vw,32px);letter-spacing:.2em;
+}
+@keyframes pour{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+.glass-name{margin-top:16px;font-size:14px;letter-spacing:.2em;color:var(--muted)}
+
+.fv-foot{
+  grid-column:1 / -1;grid-row:3;
+  margin-top:56px;
+  display:flex;align-items:flex-end;justify-content:space-between;gap:32px;
+  border-top:1px solid var(--line);padding-top:28px;
+}
+.fv-fair{font-size:16px;letter-spacing:.14em;color:var(--muted)}
+.fv-fair strong{
+  display:block;margin-top:4px;
+  font-family:"Kaisei Opti",serif;font-size:clamp(26px,2.6vw,36px);
+  color:var(--ink);letter-spacing:.08em;font-weight:700;
+}
+.fv-date{font-size:17px;letter-spacing:.06em;text-align:right}
+
+/* ---------------- 共通 ---------------- */
+section{position:relative}
+.inner{max-width:1120px;margin:0 auto;padding:0 56px}
+.label{
+  font-size:14px;letter-spacing:.3em;color:var(--muted);margin-bottom:24px;
+  display:flex;align-items:center;gap:14px;
+}
+.label::before{content:"";width:32px;height:1px;background:currentColor}
+.h2{
+  font-family:"Kaisei Opti",serif;font-weight:700;
+  font-size:clamp(32px,3.6vw,50px);line-height:1.5;letter-spacing:.06em;
+}
+.btn{
+  display:inline-flex;align-items:center;gap:18px;
+  background:var(--ink);color:var(--paper);
+  font-size:18px;font-weight:700;letter-spacing:.12em;
+  padding:22px 40px;
+  transition:background .25s;
+}
+.btn::after{content:"";width:28px;height:1px;background:currentColor;transition:width .25s}
+.btn:hover{background:var(--plum)}
+.btn:hover::after{width:40px}
+
+/* ---------------- ふたつの声 ---------------- */
+.voices{padding:180px 0 160px}
+.voices .h2{margin-bottom:96px}
+.voice{
+  display:grid;grid-template-columns:200px 1fr;gap:48px;
+  padding:56px 0;border-top:1px solid var(--line);
+}
+.voice:last-child{border-bottom:1px solid var(--line)}
+.voice-who{font-size:15px;letter-spacing:.2em;color:var(--muted);padding-top:12px}
+.voice-who b{display:block;font-size:22px;color:var(--ink);letter-spacing:.1em;margin-top:4px}
+.voice blockquote{
+  font-family:"Kaisei Opti",serif;
+  font-size:clamp(24px,2.5vw,34px);line-height:1.7;letter-spacing:.04em;
+}
+.voice p{margin-top:24px;font-size:18px}
+.voice p strong{font-weight:700;background:linear-gradient(transparent 62%,var(--amber-soft) 62%)}
+.voice.v2 p strong{background:linear-gradient(transparent 62%,var(--plum-soft) 62%)}
+
+/* ---------------- BOXの中身 ---------------- */
+.box{background:var(--white);padding:160px 0}
+.box-grid{display:grid;grid-template-columns:1fr 1.25fr;gap:96px;align-items:start}
+.box-lead{margin-top:32px;font-size:18px}
+.box-list{list-style:none;counter-reset:n}
+.box-list li{
+  display:grid;grid-template-columns:72px 1fr auto;gap:24px;align-items:baseline;
+  padding:36px 0;border-bottom:1px solid var(--line);
+}
+.box-list li:first-child{border-top:2px solid var(--ink)}
+.box-list .num{font-family:"Josefin Sans",sans-serif;font-size:40px;color:var(--line);line-height:1}
+.box-list .nm{font-family:"Kaisei Opti",serif;font-size:clamp(22px,2.1vw,28px);font-weight:700;letter-spacing:.06em}
+.box-list .ds{display:block;margin-top:6px;font-size:16px;color:var(--muted);font-family:"Zen Kaku Gothic New",sans-serif;font-weight:400}
+.box-list .qty{font-size:20px;letter-spacing:.06em}
+.box-list li:nth-child(1) .nm{color:var(--amber)}
+.box-list li:nth-child(2) .nm{color:var(--plum)}
+.price{
+  margin-top:48px;display:flex;align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap;
+}
+.price-l{font-size:16px;letter-spacing:.2em;color:var(--muted)}
+.price-v{font-family:"Kaisei Opti",serif;font-size:clamp(34px,3.6vw,48px);font-weight:700}
+.price-v small{font-size:16px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:400;margin-left:6px}
+.box-cta{margin-top:48px}
+
+/* ---------------- 飲みくらべ方 ---------------- */
+.how{padding:180px 0 160px}
+.how-steps{margin-top:96px;display:grid;grid-template-columns:repeat(3,1fr);gap:56px}
+.step{border-top:2px solid var(--ink);padding-top:28px}
+.step-n{font-family:"Josefin Sans",sans-serif;font-size:14px;letter-spacing:.24em;color:var(--muted)}
+.step h3{
+  font-family:"Kaisei Opti",serif;font-size:clamp(24px,2.3vw,30px);line-height:1.55;
+  margin:12px 0 18px;letter-spacing:.04em;
+}
+.step p{font-size:17px}
+.arrange{margin-top:20px;list-style:none;font-size:16px}
+.arrange li{padding:10px 0;border-bottom:1px dashed var(--line);display:flex;justify-content:space-between;gap:16px}
+.arrange li span{color:var(--muted)}
+
+/* ---------------- 味くらべノート（このページの記憶に残る場所） ---------------- */
+.note{background:var(--paper-deep);padding:180px 0}
+.note-head{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:end;margin-bottom:72px}
+.note-head p{font-size:18px}
+.sheet{
+  background:var(--white);
+  max-width:880px;margin:0 auto;
+  padding:64px 72px 56px;
+  border:1px solid var(--line);
+  background-image:repeating-linear-gradient(180deg,transparent 0 63px,#EDE4D6 63px 64px);
+  background-position:0 140px;
+}
+.sheet-title{
+  display:flex;justify-content:space-between;align-items:baseline;
+  border-bottom:2px solid var(--ink);padding-bottom:16px;margin-bottom:8px;
+}
+.sheet-title h3{font-family:"Kaisei Opti",serif;font-size:28px;letter-spacing:.14em}
+.sheet-title span{font-size:14px;color:var(--muted);letter-spacing:.1em}
+.rate{width:100%;border-collapse:collapse}
+.rate th,.rate td{height:64px;font-weight:400}
+.rate thead th{font-family:"Kaisei Opti",serif;font-size:20px;font-weight:700;letter-spacing:.12em;text-align:center}
+.rate thead th.c-a{color:var(--amber)}
+.rate thead th.c-p{color:var(--plum)}
+.rate tbody th{text-align:left;font-size:17px;letter-spacing:.1em;width:28%}
+.dots{display:flex;justify-content:center;gap:10px}
+.dot{
+  width:26px;height:26px;border-radius:50%;
+  border:1.5px solid var(--line);
+  transition:background .2s,border-color .2s,transform .2s;
+}
+.dot:hover{transform:scale(1.12)}
+.c-a .dot.on{background:var(--amber);border-color:var(--amber)}
+.c-p .dot.on{background:var(--plum);border-color:var(--plum)}
+.dot:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.oshi{
+  margin-top:40px;padding-top:32px;border-top:1px solid var(--line);
+  display:flex;align-items:center;gap:24px;flex-wrap:wrap;
+}
+.oshi-q{font-family:"Kaisei Opti",serif;font-size:24px;letter-spacing:.1em}
+.oshi-btns{display:flex;gap:12px}
+.oshi-btn{
+  font-family:"Kaisei Opti",serif;font-size:20px;font-weight:700;letter-spacing:.1em;
+  padding:10px 28px;border:1.5px solid var(--line);color:var(--muted);
+  transition:all .2s;
+}
+.oshi-btn[data-v="a"].on{background:var(--amber);border-color:var(--amber);color:var(--white)}
+.oshi-btn[data-v="p"].on{background:var(--plum);border-color:var(--plum);color:var(--white)}
+.oshi-msg{margin-top:20px;min-height:1.9em;font-size:16px;color:var(--muted)}
+.note-cap{max-width:880px;margin:24px auto 0;font-size:14px;color:var(--muted)}
+
+/* ---------------- その次 ---------------- */
+.next{padding:180px 0 160px}
+.next .h2{margin-bottom:48px}
+.next-lead{font-size:18px;max-width:640px}
+.next-links{margin-top:72px;display:grid;grid-template-columns:1fr 1fr;border-top:2px solid var(--ink)}
+.next-link{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:44px 8px 44px 0;border-bottom:1px solid var(--line);
+  transition:padding .25s;
+}
+.next-link + .next-link{padding-left:40px;border-left:1px solid var(--line)}
+.next-link:hover{padding-right:0}
+.next-link .t{font-family:"Kaisei Opti",serif;font-size:clamp(24px,2.4vw,32px);font-weight:700;letter-spacing:.08em}
+.next-link .s{display:block;font-family:"Zen Kaku Gothic New",sans-serif;font-size:15px;font-weight:400;color:var(--muted);margin-top:4px;letter-spacing:.04em}
+.next-link .arw{width:40px;height:1px;background:currentColor;position:relative;flex:none}
+.next-link .arw::after{content:"";position:absolute;right:0;top:-4px;width:9px;height:9px;border-top:1px solid currentColor;border-right:1px solid currentColor;transform:rotate(45deg)}
+.next-link.a .t{color:var(--amber)}
+.next-link.p .t{color:var(--plum)}
+
+/* ---------------- フェア概要 ---------------- */
+.info{background:var(--ink);color:var(--paper);padding:140px 0 120px}
+.info .label{color:#B9A994}
+.info .h2{margin-bottom:64px}
+.info dl{display:grid;grid-template-columns:200px 1fr;border-top:1px solid #4A3B31}
+.info dt,.info dd{padding:26px 0;border-bottom:1px solid #4A3B31;font-size:18px}
+.info dt{color:#B9A994;letter-spacing:.14em}
+.info .tbd::after{background:#C7704F}
+.info-cta{margin-top:72px;text-align:center}
+.info .btn{background:var(--paper);color:var(--ink)}
+.info .btn:hover{background:var(--plum-soft)}
+.info-notes{margin-top:56px;font-size:14px;color:#B9A994;line-height:2}
+footer{background:var(--ink);color:#8F7F70;text-align:center;font-size:13px;letter-spacing:.2em;padding:0 0 48px}
+
+@media (prefers-reduced-motion:reduce){
+  .liquid{animation:none}
+  *{transition:none !important}
+}
+
+/* =========================================================
+   SP（PCの縮小ではなく、SP用に組み直す）
+   ========================================================= */
+@media (max-width:767px){
+  body{font-size:16px}
+  .pc{display:none}
+  .sp{display:inline}
+  .inner{padding:0 22px}
+  .draftbar{font-size:12px}
+
+  .fv{
+    min-height:auto;
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:auto auto auto auto;
+    column-gap:16px;
+    padding:28px 22px 56px;
+  }
+  .fv-copy{grid-column:1 / -1;grid-row:2;display:block;margin:40px 0 44px}
+  .fv-title{
+    writing-mode:horizontal-tb;height:auto;white-space:normal;
+    font-size:clamp(40px,11.4vw,50px);line-height:1.4;letter-spacing:.04em;
+  }
+  .fv-side{writing-mode:horizontal-tb;font-size:15px;letter-spacing:.06em;line-height:1.9;padding-top:20px}
+  .glass-wrap{grid-row:3;justify-self:center}
+  .glass-wrap.g2{margin-bottom:0;margin-top:40px}
+  .glass{width:min(34vw,170px);height:min(66vw,320px);border-radius:0 0 22px 22px}
+  .liquid{padding-top:20px}
+  .liquid span{font-size:20px}
+  .fv-foot{grid-row:4;margin-top:48px;display:block}
+  .fv-fair strong{font-size:26px}
+  .fv-date{text-align:left;margin-top:16px;font-size:16px}
+
+  .h2{font-size:clamp(27px,7.4vw,32px)}
+  .label{font-size:13px;margin-bottom:18px}
+
+  .voices{padding:110px 0 96px}
+  .voices .h2{margin-bottom:56px}
+  .voice{grid-template-columns:1fr;gap:16px;padding:40px 0}
+  .voice-who{padding-top:0}
+  .voice-who b{display:inline;margin:0 0 0 8px;font-size:18px}
+  .voice blockquote{font-size:21px}
+  .voice p{font-size:16px;margin-top:18px}
+
+  .box{padding:110px 0}
+  .box-grid{grid-template-columns:1fr;gap:56px}
+  .box-lead{font-size:16px;margin-top:24px}
+  .box-list li{grid-template-columns:44px 1fr auto;gap:14px;padding:28px 0}
+  .box-list .num{font-size:28px}
+  .box-list .nm{font-size:21px}
+  .box-list .ds{font-size:14px}
+  .box-list .qty{font-size:17px}
+  .price{margin-top:36px}
+  .price-v{font-size:34px}
+  .price-v small{display:block;margin:4px 0 0}
+  .btn{width:100%;justify-content:center;font-size:17px;padding:22px 20px}
+
+  .how{padding:110px 0 96px}
+  .how-steps{grid-template-columns:1fr;gap:56px;margin-top:56px}
+  .step h3{font-size:24px}
+  .step p{font-size:16px}
+
+  .note{padding:110px 0}
+  .note-head{grid-template-columns:1fr;gap:24px;margin-bottom:44px}
+  .note-head p{font-size:16px}
+  .sheet{padding:36px 18px 32px;background-position:0 104px;background-image:repeating-linear-gradient(180deg,transparent 0 55px,#EDE4D6 55px 56px)}
+  .sheet-title{display:block}
+  .sheet-title h3{font-size:22px}
+  .sheet-title span{display:block;font-size:12px;margin-top:4px}
+  .rate th,.rate td{height:56px}
+  .rate thead th{font-size:16px;letter-spacing:.04em}
+  .rate tbody th{font-size:13px;letter-spacing:0;width:27%;white-space:nowrap}
+  .rate td{padding:0 3px}
+  .dots{gap:3px}
+  .dot{width:16px;height:16px}
+  .oshi{display:block}
+  .oshi-q{font-size:20px;margin-bottom:16px}
+  .oshi-btns{gap:10px}
+  .oshi-btn{flex:1;font-size:18px;padding:12px 0}
+
+  .next{padding:110px 0 96px}
+  .next-lead{font-size:16px}
+  .next-links{grid-template-columns:1fr;margin-top:48px}
+  .next-link{padding:32px 0}
+  .next-link + .next-link{padding-left:0;border-left:none}
+  .next-link .t{font-size:24px}
+
+  .info{padding:96px 0 80px}
+  .info .h2{margin-bottom:40px}
+  .info dl{grid-template-columns:1fr}
+  .info dt{border-bottom:none;padding:24px 0 4px;font-size:14px}
+  .info dd{padding:0 0 24px;font-size:16px}
+  .info-cta{margin-top:48px}
+}
+</style>
+</head>
+<body>
+
+<div class="draftbar">提案用ドラフト ／ 「要確定」の項目は仮の内容です</div>
+
+<!-- ======================= FV ======================= -->
+<header class="fv">
+  <p class="fv-shop">断食道場</p>
+
+  <div class="fv-copy">
+    <h1 class="fv-title">ふたつの味、<br>どっちが<span class="q">好き？</span></h1>
+    <p class="fv-side">
+      <b>スタンダード味</b>と<b>梅味</b>。<br>
+      小さなボトルで、<br class="pc">飲みくらべ。
+    </p>
+  </div>
+
+  <div class="glass-wrap g1">
+    <div class="glass"><div class="liquid amber-bg"><span>スタンダード</span></div></div>
+    <p class="glass-name">STANDARD</p>
+  </div>
+  <div class="glass-wrap g2">
+    <div class="glass"><div class="liquid plum-bg"><span>梅</span></div></div>
+    <p class="glass-name">UME</p>
+  </div>
+
+  <div class="fv-foot">
+    <p class="fv-fair">秋の優光泉 味くらべフェア<strong>飲みくらべBOX<span class="pc">　</span><br class="sp">期間限定</strong></p>
+    <p class="fv-date"><span class="tbd">2026年10月◯日（◯）〜11月◯日（◯）</span></p>
+  </div>
+</header>
+
+<main>
+
+<!-- ======================= ふたつの声 ======================= -->
+<section class="voices">
+  <div class="inner">
+    <p class="label">FOR YOU</p>
+    <h2 class="h2">はじめての人にも、<br>いつもの人にも。</h2>
+
+    <div class="voice v1">
+      <p class="voice-who">はじめての方<b>迷っている</b></p>
+      <div>
+        <blockquote>「どっちの味を買えばいいか、<br>決められない。」</blockquote>
+        <p>大きなボトルを買う前に、<strong>両方を少しずつ飲んでから選べます。</strong><br class="pc">自分の好みが分かってから、続ける一本を決めてください。</p>
+      </div>
+    </div>
+
+    <div class="voice v2">
+      <p class="voice-who">いつもの方<b>もう一方の味</b></p>
+      <div>
+        <blockquote>「ずっと同じ味。<br>もう一方は、実は飲んだことがない。」</blockquote>
+        <p>いつもの味の隣に、もう一方の味をならべて。<br class="pc"><strong>この秋は、いつもと違う一杯を試すきっかけに。</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= BOXの中身 ======================= -->
+<!-- devnote: 容量・価格・パッケージ仕様は要確定。商品写真が届いたら .box-grid 左側に配置 -->
+<section class="box" id="box">
+  <div class="inner box-grid">
+    <div>
+      <p class="label">INSIDE THE BOX</p>
+      <h2 class="h2">飲みくらべ<br>BOXの中身</h2>
+      <p class="box-lead">ふたつの味を小さなボトルで1本ずつ。<br class="pc">感想を書きこめる「味くらべノート」をつけて、<br class="pc">飲みくらべを楽しめるセットにしました。</p>
+    </div>
+    <div>
+      <ol class="box-list">
+        <li><span class="num">01</span><span class="nm">スタンダード味<span class="ds">小容量ボトル <span class="tbd">◯◯ml</span></span></span><span class="qty">1本</span></li>
+        <li><span class="num">02</span><span class="nm">梅味<span class="ds">小容量ボトル <span class="tbd">◯◯ml</span></span></span><span class="qty">1本</span></li>
+        <li><span class="num">03</span><span class="nm">味くらべノート<span class="ds">感想を書きこめるカード</span></span><span class="qty">1枚</span></li>
+      </ol>
+      <div class="price">
+        <p class="price-l">フェア期間限定価格</p>
+        <p class="price-v"><span class="tbd">◯,◯◯◯円</span><small>（税込・送料込）</small></p>
+      </div>
+      <p class="box-cta"><a class="btn" href="#">飲みくらべBOXを見る</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 飲みくらべ方 ======================= -->
+<section class="how">
+  <div class="inner">
+    <p class="label">HOW TO TASTE</p>
+    <h2 class="h2">飲みくらべ方は、<br class="sp">3つだけ。</h2>
+
+    <div class="how-steps">
+      <div class="step">
+        <p class="step-n">STEP 01</p>
+        <h3>まずは同じ条件で、<br>ひとくちずつ。</h3>
+        <p>同じ濃さ、同じ温度にそろえて、スタンダード味と梅味を交互に。最初の印象をそのまま覚えておきます。</p>
+      </div>
+      <div class="step">
+        <p class="step-n">STEP 02</p>
+        <h3>秋らしく、<br>割り方を変える。</h3>
+        <p>温度や割るものを変えると、同じ味でも印象が変わります。</p>
+        <ul class="arrange">
+          <li>お湯割り<span>肌寒い朝や夜に</span></li>
+          <li>炭酸割り<span>すっきり飲みたいときに</span></li>
+          <li>ヨーグルトに<span>かけて食べる</span></li>
+        </ul>
+      </div>
+      <div class="step">
+        <p class="step-n">STEP 03</p>
+        <h3>ノートに書いて、<br>推し味を決める。</h3>
+        <p>甘み、酸味、香り。感じたことを付属の味くらべノートに書きこむと、自分の好みがはっきりします。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 味くらべノート ======================= -->
+<section class="note">
+  <div class="inner">
+    <div class="note-head">
+      <div>
+        <p class="label">TASTING NOTE</p>
+        <h2 class="h2">BOXに入る<br>「味くらべノート」</h2>
+      </div>
+      <p>ここで少しだけ試せます。<br>丸をタップして、それぞれの味の印象を5段階でつけてみてください。</p>
+    </div>
+
+    <div class="sheet">
+      <div class="sheet-title">
+        <h3>味くらべノート</h3>
+        <span>秋の優光泉 味くらべフェア</span>
+      </div>
+      <table class="rate">
+        <thead>
+          <tr><th></th><th class="c-a">スタンダード</th><th class="c-p">梅</th></tr>
+        </thead>
+        <tbody id="rateBody"></tbody>
+      </table>
+      <div class="oshi">
+        <p class="oshi-q">わたしの推し味は</p>
+        <div class="oshi-btns">
+          <button class="oshi-btn" data-v="a" aria-pressed="false">スタンダード</button>
+          <button class="oshi-btn" data-v="p" aria-pressed="false">梅</button>
+        </div>
+      </div>
+      <p class="oshi-msg" id="oshiMsg" aria-live="polite"></p>
+    </div>
+    <p class="note-cap">※ 実物のノートは紙のカードです。デザインは変わる場合があります。</p>
+  </div>
+</section>
+
+<!-- ======================= その次 ======================= -->
+<!-- devnote: リンク先は通常ボトルの商品ページへ差し替え -->
+<section class="next">
+  <div class="inner">
+    <p class="label">AFTER TASTING</p>
+    <h2 class="h2">推し味が決まったら、<br>いつもの一本に。</h2>
+    <p class="next-lead">飲みくらべで気に入った味は、通常サイズのボトルでどうぞ。ふたつとも気に入ったら、日によって飲み分けるのもおすすめです。</p>
+
+    <div class="next-links">
+      <a class="next-link a" href="#"><span class="t">スタンダード味<span class="s">優光泉 通常ボトル</span></span><span class="arw"></span></a>
+      <a class="next-link p" href="#"><span class="t">梅味<span class="s">優光泉 通常ボトル</span></span><span class="arw"></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= フェア概要 ======================= -->
+<section class="info">
+  <div class="inner">
+    <p class="label">FAIR INFORMATION</p>
+    <h2 class="h2">フェア概要</h2>
+    <dl>
+      <dt>フェア名</dt><dd>秋の優光泉 味くらべフェア</dd>
+      <dt>期間</dt><dd><span class="tbd">2026年10月◯日（◯）〜11月◯日（◯）</span></dd>
+      <dt>販売商品</dt><dd>優光泉 飲みくらべBOX（スタンダード味・梅味 各1本、味くらべノート付き）</dd>
+      <dt>価格</dt><dd><span class="tbd">◯,◯◯◯円（税込・送料込）</span></dd>
+      <dt>購入制限</dt><dd><span class="tbd">お一人さま◯点まで／数量限定</span></dd>
+    </dl>
+    <p class="info-cta"><a class="btn" href="#box">飲みくらべBOXを見る</a></p>
+    <p class="info-notes">
+      ※ 期間中でも、予定数量に達しだい販売を終了します。<br>
+      ※ 飲み方・保存方法は、商品に記載の表示をご確認ください。
+    </p>
+  </div>
+</section>
+
+</main>
+<footer>断食道場</footer>
+
+<script>
+/* 味くらべノート：5段階評価（保存はしない） */
+(function(){
+  var rows = ["甘み","酸味","香り","飲みやすさ","また飲みたい"];
+  var names = {a:"スタンダード", p:"梅"};
+  var body = document.getElementById("rateBody");
+  rows.forEach(function(r){
+    var tr = document.createElement("tr");
+    tr.innerHTML = "<th>"+r+"</th>" + ["a","p"].map(function(k){
+      var cell = '<td class="c-'+k+'"><div class="dots" role="radiogroup" aria-label="'+names[k]+'の'+r+'">';
+      for(var i=1;i<=5;i++){
+        cell += '<button class="dot" role="radio" aria-checked="false" aria-label="'+i+'" data-i="'+i+'"></button>';
+      }
+      return cell + "</div></td>";
+    }).join("");
+    body.appendChild(tr);
+  });
+  body.addEventListener("click", function(e){
+    var d = e.target.closest(".dot"); if(!d) return;
+    var n = +d.dataset.i;
+    d.parentNode.querySelectorAll(".dot").forEach(function(x){
+      var on = +x.dataset.i <= n;
+      x.classList.toggle("on", on);
+      x.setAttribute("aria-checked", +x.dataset.i === n ? "true" : "false");
+    });
+  });
+
+  var msgs = {
+    a:"スタンダード味が推し味。毎日の定番に、いつもの一本でどうぞ。",
+    p:"梅味が推し味。気に入った味を、梅味の通常ボトルで続けてください。"
+  };
+  var btns = document.querySelectorAll(".oshi-btn");
+  btns.forEach(function(b){
+    b.addEventListener("click", function(){
+      btns.forEach(function(x){
+        var on = x === b;
+        x.classList.toggle("on", on);
+        x.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+      document.getElementById("oshiMsg").textContent = msgs[b.dataset.v];
+    });
+  });
+})();
+</script>
+</body>
+</html>
