@@ -14,7 +14,7 @@
    ・白いパネル＋グレー地のシンプルな画面に、動きで楽しさを出す
    ・文字は傾けない。書体は読みやすいゴシック（Noto Sans JP）
    ・色はパッケージ写真と、味ごとの小さなラベルだけ
-   ・動き：.rv（ふわっと出る）／ .pop（弾んで出る）／ .split（1文字ずつ）／ .draw（線を描く）
+   ・動き：.rv（スクロールでふわっと出る）だけに絞っている
    ・BOX商品ページURLは「BOX_URL」コメントの箇所（3か所）
    ========================================================= */
 :root{
@@ -59,15 +59,8 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 .wak{--c:var(--wak)}
 
 /* ---------------- 動き ---------------- */
-.js .rv{opacity:0;transform:translateY(32px);transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:calc(var(--i,0) * 90ms)}
+.js .rv{opacity:0;transform:translateY(20px);transition:opacity .9s ease,transform .9s var(--ease);transition-delay:calc(var(--i,0) * 80ms)}
 .js .rv.is-in{opacity:1;transform:none}
-.js .pop{opacity:0;transform:scale(.6);transition:opacity .4s ease,transform .7s var(--spring);transition-delay:calc(var(--i,0) * 110ms)}
-.js .pop.is-in{opacity:1;transform:none}
-.split .ch{display:inline-block}
-.js .split .ch{opacity:0;filter:blur(8px);transform:translateY(.3em);transition:opacity .6s ease,filter .6s ease,transform .6s var(--ease);transition-delay:calc(var(--n) * 45ms)}
-.js .split.is-in .ch{opacity:1;filter:none;transform:none}
-.js .draw path,.js .draw line{stroke-dasharray:var(--len,600);stroke-dashoffset:var(--len,600);transition:stroke-dashoffset 1.1s var(--ease);transition-delay:calc(var(--i,0) * 120ms)}
-.js .draw.is-in path,.js .draw.is-in line{stroke-dashoffset:0}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 
 /* ---------------- 共通 ---------------- */
@@ -86,10 +79,10 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
   background:var(--ink);color:#fff;
   font-size:18px;font-weight:700;letter-spacing:.1em;
   padding:22px 52px;border-radius:999px;
-  transition:transform .3s var(--spring),background .2s;
+  transition:background .2s;
 }
 .btn::after{content:"";width:9px;height:9px;border-top:2px solid currentColor;border-right:2px solid currentColor;transform:rotate(45deg)}
-.btn:hover{transform:scale(1.04)}
+.btn:hover{background:#444}
 .more{
   display:inline-block;font-size:15px;font-weight:700;
   background:linear-gradient(var(--ink),var(--ink)) 0 100%/100% 1px no-repeat;padding-bottom:2px;
@@ -179,7 +172,7 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 
 /* ---------------- ABOUT ---------------- */
 .about{padding:150px 0 40px}
-.about .split{margin-top:26px;font-size:clamp(34px,4.4vw,58px);font-weight:900;line-height:1.4;letter-spacing:.06em}
+.about-ttl{margin-top:26px;font-size:clamp(34px,4.4vw,58px);font-weight:900;line-height:1.4;letter-spacing:.06em}
 .about-lead{margin-top:32px;font-size:18px;max-width:720px}
 .for{margin-top:72px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
 .for .panel{padding:40px 40px 36px}
@@ -189,20 +182,22 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 
 /* ---------------- POINT ---------------- */
 .points{padding:120px 0 40px;position:relative;overflow:hidden}
-.bigword{
-  text-align:center;font-size:clamp(90px,15vw,200px);font-weight:900;line-height:1;letter-spacing:.04em;
-  color:transparent;-webkit-text-stroke:1.5px #D5D5D0;
-  margin-bottom:-.42em;position:relative;z-index:0;user-select:none;
-  font-family:"Noto Sans JP",sans-serif;
+.points-head{margin-bottom:48px}
+.points-head .h2{margin-top:22px}
+.point{padding:56px 56px 52px;margin-bottom:24px}
+.point-head{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start;padding-bottom:32px;border-bottom:1px solid var(--line)}
+.point-no{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  width:84px;height:84px;border-radius:50%;background:var(--bg);
+  font-size:12px;font-weight:700;letter-spacing:.1em;line-height:1.2;
 }
-.point{position:relative;z-index:1;padding:64px 56px 56px;text-align:center;margin-bottom:28px}
-.point-no{display:flex;align-items:center;justify-content:center;gap:22px;font-size:22px;font-weight:900;letter-spacing:.08em}
-.point-no::before,.point-no::after{content:"";flex:1;max-width:280px;height:2px;background:var(--ink)}
-.point h3{margin-top:20px;font-size:clamp(26px,2.8vw,36px);font-weight:900;line-height:1.55}
-.point .desc{margin:20px auto 0;max-width:640px;font-size:17px;text-align:left}
+.point-no b{font-size:30px;font-weight:900;letter-spacing:0;line-height:1.1}
+.point h3{font-size:clamp(24px,2.6vw,32px);font-weight:900;line-height:1.55;padding-top:6px}
+.point .desc{margin-top:10px;max-width:640px;font-size:16px;color:#3a3a3a}
+.point-body{text-align:center}
 
 /* POINT 01：BOX → 5つの味 */
-.dia{margin:56px auto 0;max-width:860px}
+.dia{margin:48px auto 0;max-width:860px}
 .dia-box{
   display:inline-flex;align-items:center;gap:22px;
   border:2px solid var(--ink);border-radius:14px;padding:18px 28px;background:#fff;
@@ -257,17 +252,17 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 .rate .thumb{width:34px;height:52px;object-fit:cover;object-position:top}
 .rate .fl{font-size:17px;font-weight:900}
 .dots{display:flex;gap:8px}
-.dot{width:30px;height:30px;border-radius:50%;border:2px solid var(--line);transition:background .2s,border-color .2s,transform .35s var(--spring)}
-.dot.on{background:var(--c);border-color:var(--c);transform:scale(1.08)}
-.dot:hover{transform:scale(1.15)}
+.dot{width:30px;height:30px;border-radius:50%;border:2px solid var(--line);transition:background .2s,border-color .2s}
+.dot.on{background:var(--c);border-color:var(--c)}
+.dot:hover{border-color:var(--c)}
 .dot:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
 .scale{display:flex;justify-content:flex-end;gap:10px;font-size:12px;color:var(--muted);font-weight:700;padding:6px 0 8px}
 .result{border:2px solid var(--ink);border-radius:18px;padding:26px 20px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .result-q{font-size:15px;font-weight:900}
 .result-img{height:230px;margin:16px 0;display:flex;align-items:center;justify-content:center;gap:4px}
 .result-img img{height:100%;width:auto}
-.result-img img.in{animation:pkPop .7s var(--spring)}
-@keyframes pkPop{from{opacity:0;transform:translateY(40px) scale(.7)}to{opacity:1;transform:none}}
+.result-img img.in{animation:pkPop .5s ease}
+@keyframes pkPop{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 .result-empty{width:90px;height:200px;border:2px dashed var(--line);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:44px;font-weight:900;color:var(--line)}
 .result-a{font-size:26px;font-weight:900;line-height:1.4;color:var(--c,var(--ink))}
 .result-a.empty{font-size:15px;color:var(--muted)}
@@ -280,11 +275,10 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 .next .h2{margin-top:22px}
 .next-lead{margin-top:20px;font-size:17px;max-width:680px}
 .items{margin-top:48px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.item{display:block;padding:28px 22px 24px;text-align:center;transition:transform .4s var(--spring)}
-.item:hover{transform:translateY(-8px)}
+.item{display:block;padding:28px 22px 24px;text-align:center;transition:box-shadow .3s}
+.item:hover{box-shadow:0 0 0 2px var(--ink)}
 .item .imgs{height:200px;display:flex;justify-content:center;align-items:flex-end;gap:8px}
-.item .imgs img{height:100%;width:auto;transition:transform .4s var(--spring)}
-.item:hover .imgs img{transform:translateY(-6px)}
+.item .imgs img{height:100%;width:auto}
 .item .t{display:block;margin-top:20px;font-size:19px;font-weight:900;line-height:1.5}
 .item .t i{font-style:normal;color:var(--c)}
 .item .s{display:block;margin-top:4px;font-size:13px;color:var(--muted)}
@@ -309,8 +303,7 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padding:0 0 48px;color:var(--muted)}
 
 @media (prefers-reduced-motion:reduce){
-  .js .rv,.js .pop,.js .split .ch,.chip{opacity:1;transform:none;filter:none;transition:none;animation:none}
-  .js .draw path,.js .draw line{stroke-dashoffset:0;transition:none}
+  .js .rv{opacity:1;transform:none;transition:none}
   .slide.on .pk,.chip span{animation:none}
   .fill .ch{transition:none}
 }
@@ -351,7 +344,7 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
   .hero-buy .price{flex-wrap:wrap;justify-content:center}
 
   .about{padding:100px 0 24px}
-  .about .split{font-size:clamp(28px,8.4vw,34px)}
+  .about-ttl{font-size:clamp(28px,8.4vw,34px)}
   .about-lead{font-size:16px;margin-top:24px}
   .for{grid-template-columns:1fr;gap:16px;margin-top:44px}
   .for .panel{padding:28px 22px 26px;border-radius:22px}
@@ -359,13 +352,15 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
   .for p{font-size:15px}
 
   .points{padding:90px 0 24px}
-  .bigword{font-size:25vw;-webkit-text-stroke-width:1px}
-  .point{padding:44px 18px 36px;border-radius:22px;margin-bottom:18px}
-  .point-no{font-size:18px;gap:14px}
-  .point h3{font-size:22px;margin-top:14px}
+  .points-head{margin-bottom:32px}
+  .point{padding:32px 18px 32px;border-radius:22px;margin-bottom:16px}
+  .point-head{grid-template-columns:1fr;gap:14px;padding-bottom:22px}
+  .point-no{width:64px;height:64px;font-size:10px}
+  .point-no b{font-size:24px}
+  .point h3{font-size:21px;padding-top:0}
   .point .desc{font-size:15px}
 
-  .dia{margin-top:40px}
+  .dia{margin-top:32px}
   .dia-box{padding:14px 18px;gap:14px}
   .dia-box img{height:54px}
   .dia-box .t{font-size:12px}
@@ -469,7 +464,7 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
 <section class="about">
   <div class="wrap">
     <p class="label rv">ABOUT</p>
-    <h2 class="split">秋の優光泉<br class="sp"> 味くらべフェア</h2>
+    <h2 class="about-ttl rv">秋の優光泉<br class="sp"> 味くらべフェア</h2>
     <p class="about-lead rv">スタンダード、ミカン、梅、ザクローズ、濃縮和漢発酵。持ち歩きにも便利な個包装「ポケット優光泉」を5つの味で6包。いろいろ飲んでみて、自分の推し味を見つけてください。</p>
 
     <div class="for">
@@ -490,31 +485,26 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
 <!-- ======================= POINT ======================= -->
 <section class="points">
   <div class="wrap">
-    <p class="bigword" aria-hidden="true" id="bigword">POINT</p>
+    <div class="points-head">
+      <p class="label rv">POINT</p>
+      <h2 class="h2 rv">飲みくらべBOXの、<br class="sp">3つのたのしみ。</h2>
+    </div>
 
     <!-- POINT 01 -->
     <div class="point panel">
-      <p class="point-no rv">POINT 01</p>
-      <h3 class="rv" style="--i:1">5つの味がぜんぶ入って、<br>1,000円ポッキリ</h3>
+      <div class="point-head rv">
+        <p class="point-no">たのしみ<b>1</b></p>
+        <div><h3>5つの味がぜんぶ入って、<br>1,000円ポッキリ</h3></div>
+      </div>
+      <div class="point-body">
 
       <div class="dia">
-        <div class="dia-box pop">
-          <img src="img/pk-std.webp" alt="" loading="lazy">
-          <p class="t">飲みくらべBOX<b>1,000円</b></p>
-        </div>
-        <svg class="draw" viewBox="0 0 1000 120" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M500 4 C500 60 100 50 100 112" style="--len:520;--i:0"/>
-          <path d="M500 4 C500 60 300 50 300 112" style="--len:300;--i:1"/>
-          <path d="M500 4 L500 112" style="--len:110;--i:2"/>
-          <path d="M500 4 C500 60 700 50 700 112" style="--len:300;--i:1"/>
-          <path d="M500 4 C500 60 900 50 900 112" style="--len:520;--i:0"/>
-        </svg>
         <ul class="dia-list">
-          <li class="std pop" style="--i:3"><span class="ct">×2</span><img src="img/pk-std.webp" alt="" loading="lazy"><span class="nm">スタンダード</span></li>
-          <li class="mik pop" style="--i:4"><span class="ct">×1</span><img src="img/pk-mik.webp" alt="" loading="lazy"><span class="nm">ミカン</span></li>
-          <li class="ume pop" style="--i:5"><span class="ct">×1</span><img src="img/pk-ume.webp" alt="" loading="lazy"><span class="nm">梅</span></li>
-          <li class="zak pop" style="--i:6"><span class="ct">×1</span><img src="img/pk-zak.webp" alt="" loading="lazy"><span class="nm">ザクローズ</span></li>
-          <li class="wak pop" style="--i:7"><span class="ct">×1</span><img src="img/pk-wak.webp" alt="" loading="lazy"><span class="nm">濃縮<br class="sp">和漢発酵</span></li>
+          <li class="std rv" style="--i:3"><span class="ct">×2</span><img src="img/pk-std.webp" alt="" loading="lazy"><span class="nm">スタンダード</span></li>
+          <li class="mik rv" style="--i:4"><span class="ct">×1</span><img src="img/pk-mik.webp" alt="" loading="lazy"><span class="nm">ミカン</span></li>
+          <li class="ume rv" style="--i:5"><span class="ct">×1</span><img src="img/pk-ume.webp" alt="" loading="lazy"><span class="nm">梅</span></li>
+          <li class="zak rv" style="--i:6"><span class="ct">×1</span><img src="img/pk-zak.webp" alt="" loading="lazy"><span class="nm">ザクローズ</span></li>
+          <li class="wak rv" style="--i:7"><span class="ct">×1</span><img src="img/pk-wak.webp" alt="" loading="lazy"><span class="nm">濃縮<br class="sp">和漢発酵</span></li>
         </ul>
       </div>
 
@@ -525,25 +515,28 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
         <li class="zak rv"><b>ザクローズ</b><span>ザクロを使った、果物の味わいの一杯。</span></li>
         <li class="wak rv"><b>濃縮和漢発酵</b><span>「まずそう」の常識をくつがえす、和漢の味。</span></li>
       </ul>
+      </div>
     </div>
 
     <!-- POINT 02 -->
     <div class="point panel">
-      <p class="point-no rv">POINT 02</p>
-      <h3 class="rv" style="--i:1">飲む順番が決まっているから、<br>味のちがいが分かりやすい</h3>
-      <p class="desc rv" style="--i:2">なじみのある味から、だんだん個性の強い味へ。この順番で飲みすすめると、それぞれの味のちがいがよく分かります。</p>
+      <div class="point-head rv">
+        <p class="point-no">たのしみ<b>2</b></p>
+        <div><h3>飲む順番が決まっているから、<br>味のちがいが分かりやすい</h3><p class="desc">なじみのある味から、だんだん個性の強い味へ。この順番で飲みすすめると、それぞれの味のちがいがよく分かります。</p></div>
+      </div>
+      <div class="point-body">
 
       <div class="route">
-        <svg class="draw" viewBox="0 0 900 40" preserveAspectRatio="none" aria-hidden="true">
+        <svg viewBox="0 0 900 40" preserveAspectRatio="none" aria-hidden="true">
           <line x1="75" y1="20" x2="825" y2="20" style="--len:760"/>
         </svg>
         <ol>
-          <li class="std"><span class="tag">START</span><span class="no pop" style="--i:0">1</span><div class="sq rv" style="--i:0"><img src="img/pk-std.webp" alt="" loading="lazy"><b>スタンダード</b><small>まずは基準の味</small></div></li>
-          <li class="ume"><span class="tag"></span><span class="no pop" style="--i:1">2</span><div class="sq rv" style="--i:1"><img src="img/pk-ume.webp" alt="" loading="lazy"><b>梅</b><small>定番のもう一方</small></div></li>
-          <li class="mik"><span class="tag"></span><span class="no pop" style="--i:2">3</span><div class="sq rv" style="--i:2"><img src="img/pk-mik.webp" alt="" loading="lazy"><b>ミカン</b><small>やさしい甘さ</small></div></li>
-          <li class="zak"><span class="tag"></span><span class="no pop" style="--i:3">4</span><div class="sq rv" style="--i:3"><img src="img/pk-zak.webp" alt="" loading="lazy"><b>ザクローズ</b><small>果物どうしで</small></div></li>
-          <li class="wak"><span class="tag"></span><span class="no pop" style="--i:4">5</span><div class="sq rv" style="--i:4"><img src="img/pk-wak.webp" alt="" loading="lazy"><b>濃縮和漢発酵</b><small>個性派の味</small></div></li>
-          <li class="std"><span class="tag">GOAL</span><span class="no pop" style="--i:5">6</span><div class="sq rv" style="--i:5"><img src="img/pk-std.webp" alt="" loading="lazy"><b>スタンダード</b><small>最初の味へ戻る</small></div></li>
+          <li class="std"><span class="tag">START</span><span class="no" style="--i:0">1</span><div class="sq rv" style="--i:0"><img src="img/pk-std.webp" alt="" loading="lazy"><b>スタンダード</b><small>まずは基準の味</small></div></li>
+          <li class="ume"><span class="tag"></span><span class="no" style="--i:1">2</span><div class="sq rv" style="--i:1"><img src="img/pk-ume.webp" alt="" loading="lazy"><b>梅</b><small>定番のもう一方</small></div></li>
+          <li class="mik"><span class="tag"></span><span class="no" style="--i:2">3</span><div class="sq rv" style="--i:2"><img src="img/pk-mik.webp" alt="" loading="lazy"><b>ミカン</b><small>やさしい甘さ</small></div></li>
+          <li class="zak"><span class="tag"></span><span class="no" style="--i:3">4</span><div class="sq rv" style="--i:3"><img src="img/pk-zak.webp" alt="" loading="lazy"><b>ザクローズ</b><small>果物どうしで</small></div></li>
+          <li class="wak"><span class="tag"></span><span class="no" style="--i:4">5</span><div class="sq rv" style="--i:4"><img src="img/pk-wak.webp" alt="" loading="lazy"><b>濃縮和漢発酵</b><small>個性派の味</small></div></li>
+          <li class="std"><span class="tag">GOAL</span><span class="no" style="--i:5">6</span><div class="sq rv" style="--i:5"><img src="img/pk-std.webp" alt="" loading="lazy"><b>スタンダード</b><small>最初の味へ戻る</small></div></li>
         </ol>
       </div>
 
@@ -552,13 +545,16 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
         <p>最初と最後に同じ味を飲むと、ほかの4つの味を知ったあとで、最初の味がどう感じられるかが分かります。最初とちがって感じたら、それも飲みくらべならではの発見です。</p>
       </div>
       <p class="note-cap">※ 順番は自由です。1日1包ずつでも、何包かまとめて飲みくらべても楽しめます。</p>
+      </div>
     </div>
 
     <!-- POINT 03 -->
     <div class="point panel">
-      <p class="point-no rv">POINT 03</p>
-      <h3 class="rv" style="--i:1">飲んだら、推し味をチェック</h3>
-      <p class="desc rv" style="--i:2">それぞれの味の「好き度」を、丸をタップして5段階でつけてください。いちばん好きな味が、あなたの推し味です。</p>
+      <div class="point-head rv">
+        <p class="point-no">たのしみ<b>3</b></p>
+        <div><h3>飲んだら、推し味をチェック</h3><p class="desc">それぞれの味の「好き度」を、丸をタップして5段階でつけてください。いちばん好きな味が、あなたの推し味です。</p></div>
+      </div>
+      <div class="point-body">
 
       <div class="note">
         <div class="sheet rv">
@@ -579,6 +575,7 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
         </div>
       </div>
       <p class="note-cap">※ このノートはページ上でお試しいただけるものです。入力内容は保存されません。</p>
+      </div>
     </div>
   </div>
 </section>
@@ -587,7 +584,7 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
 <section class="next">
   <div class="wrap">
     <p class="label rv">AFTER TASTING</p>
-    <h2 class="h2 split">推し味が決まったら、<br>いつもの一杯に。</h2>
+    <h2 class="h2">推し味が決まったら、<br>いつもの一杯に。</h2>
     <p class="next-lead rv">気に入った味は、同じ個包装タイプ（20ml×15包）でどうぞ。いくつか気に入ったら、日によって飲み分けるのもおすすめです。</p>
 
     <div class="items">
@@ -616,11 +613,11 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
   <div class="wrap">
     <div class="panel">
       <div class="buy-pks">
-        <img class="pop" style="--i:0" src="img/pk-std.webp" alt="" loading="lazy">
-        <img class="pop" style="--i:1" src="img/pk-mik.webp" alt="" loading="lazy">
-        <img class="pop" style="--i:2" src="img/pk-ume.webp" alt="" loading="lazy">
-        <img class="pop" style="--i:3" src="img/pk-zak.webp" alt="" loading="lazy">
-        <img class="pop" style="--i:4" src="img/pk-wak.webp" alt="" loading="lazy">
+        <img class="rv" style="--i:0" src="img/pk-std.webp" alt="" loading="lazy">
+        <img class="rv" style="--i:1" src="img/pk-mik.webp" alt="" loading="lazy">
+        <img class="rv" style="--i:2" src="img/pk-ume.webp" alt="" loading="lazy">
+        <img class="rv" style="--i:3" src="img/pk-zak.webp" alt="" loading="lazy">
+        <img class="rv" style="--i:4" src="img/pk-wak.webp" alt="" loading="lazy">
       </div>
       <h2 class="buy-ttl rv">秋の優光泉<br class="sp"> 飲みくらべBOX</h2>
       <p class="price rv" style="--i:1"><span class="num">1,000</span><span class="u">円</span><span class="u2">ポッキリ</span></p>
@@ -648,33 +645,12 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
 
 <script>
 (function(){
-  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  /* 文字を1文字ずつspanに分ける（.split：ふわっと出る ／ .fill：グレーから黒に塗られる） */
-  function splitChars(el){
-    var n = 0;
-    (function walk(node){
-      [].slice.call(node.childNodes).forEach(function(c){
-        if(c.nodeType === 3){
-          var frag = document.createDocumentFragment();
-          c.textContent.split("").forEach(function(ch){
-            if(ch.trim() === ""){ frag.appendChild(document.createTextNode(ch)); return; }
-            var s = document.createElement("span");
-            s.className = "ch"; s.style.setProperty("--n", n++); s.textContent = ch;
-            frag.appendChild(s);
-          });
-          c.parentNode.replaceChild(frag, c);
-        }else if(c.nodeType === 1 && c.tagName !== "BR"){ walk(c); }
-      });
-    })(el);
-  }
-  document.querySelectorAll(".split").forEach(splitChars);
 
   /* スクロールで表示 */
   var io = new IntersectionObserver(function(es){
     es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("is-in"); io.unobserve(e.target); } });
   },{rootMargin:"0px 0px -12% 0px"});
-  document.querySelectorAll(".rv,.pop,.split,.draw").forEach(function(el){ io.observe(el); });
+  document.querySelectorAll(".rv").forEach(function(el){ io.observe(el); });
 
   /* FVを過ぎたら固定バー */
   var bar = document.getElementById("bar");
@@ -682,15 +658,6 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
   new IntersectionObserver(function(es){
     bar.classList.toggle("show", !es[0].isIntersecting);
   }).observe(hero);
-
-  /* POINTの背景文字：スクロールで少し横に流れる */
-  var big = document.getElementById("bigword");
-  if(!reduce){
-    window.addEventListener("scroll", function(){
-      var r = big.getBoundingClientRect();
-      big.style.transform = "translateX(" + ((r.top - innerHeight / 2) * -0.15) + "px)";
-    },{passive:true});
-  }
 
   /* 推し味ノート */
   var rows = document.querySelectorAll("#rate li");
