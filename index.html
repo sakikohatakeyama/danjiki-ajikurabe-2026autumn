@@ -122,6 +122,7 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 /* 吹き出し：ページを開いたときに下からふわっと浮き出る（1回だけ） */
 .hero .chip{opacity:0;transform:translateY(18px);animation:chipUp .8s var(--ease) both;animation-delay:calc(var(--i,0) * 220ms + 300ms) !important}
 @keyframes chipUp{to{opacity:1;transform:none}}
+.hero .chip.r{left:auto;right:4%}
 .hero .fill .ch{color:var(--ink);transition:none}
 .slide .pill{border-color:var(--c,var(--ink));color:var(--c,var(--ink))}
 .slide h1,.slide .ttl{
@@ -345,6 +346,7 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
   .slide h1,.slide .ttl{margin-top:0;font-size:clamp(26px,7.4vw,30px)}
   .stage{--k:.6;height:300px}
   .chip{left:clamp(0px,var(--cx),calc(100% - 158px));top:calc(var(--cy) * .9)}
+  .hero .chip.r{left:auto;right:2%}
   .chip span{font-size:11px;padding:7px 10px;border-radius:10px}
   .chip b{font-size:14px}
   .chip.round span{padding:6px 12px}
@@ -453,8 +455,7 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
           <img class="pk zak" src="img/pk-zak.webp" alt="" style="--h:340px;--x:125px;--r:7deg;--b:4px;--i:2;--z:2">
           <img class="pk wak" src="img/pk-wak.webp" alt="" style="--h:300px;--x:250px;--r:14deg;--b:10px;--i:1">
           <p class="chip" style="--cx:6%;--cy:22%;--i:0"><span>5つの味<b>6包入り</b></span></p>
-          <p class="chip" style="--cx:76%;--cy:12%;--i:1"><span>秋の期間限定<b>1,000円ポッキリ</b></span></p>
-          <p class="chip round" style="--cx:80%;--cy:74%;--i:2"><span>税込・送料無料</span></p>
+          <p class="chip r" style="--cy:12%;--i:1"><span>秋の期間限定<b>1,000円ポッキリ</b></span></p>
         </div>
       </div>
 
