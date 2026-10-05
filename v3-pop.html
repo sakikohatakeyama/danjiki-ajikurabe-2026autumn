@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>秋の優光泉 味くらべフェア｜5つの味の飲みくらべBOX 1,000円ポッキリ｜断食道場shop</title>
+<meta name="description" content="スタンダード、ミカン、梅、ザクローズ、濃縮和漢発酵。優光泉の5つの味を、個包装6包で飲みくらべ。秋の期間限定、1,000円ポッキリ。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   秋の優光泉 味くらべフェア ／ 5つの味の飲みくらべBOX（v3）
+   ・色はパッケージの5色そのまま（--std / --mik / --ume / --zak / --wak）
+   ・見出しと数字：Dela Gothic One ／ 本文：Zen Kaku Gothic New
+   ・パッケージ画像：img/pk-*.webp
+   ・BOX商品ページURLは「BOX_URL」コメントの箇所（3か所）
+   ========================================================= */
+:root{
+  --cream:#FFFAF0;
+  --white:#FFFFFF;
+  --ink:#2D2620;
+  --muted:#6F655B;
+
+  --std:#8DAE2E;  --std-l:#EEF5D2;   /* スタンダード：黄緑 */
+  --mik:#F29C12;  --mik-l:#FFEFCC;   /* ミカン：オレンジ */
+  --ume:#DE5E6B;  --ume-l:#FDE2E3;   /* 梅：コーラルピンク */
+  --zak:#8C1B37;  --zak-l:#F5DAE1;   /* ザクローズ：ワイン */
+  --wak:#7A7266;  --wak-l:#ECE7DE;   /* 濃縮和漢発酵：グレージュ */
+  --lemon:#FFDA45;                   /* 価格ステッカー */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--cream);
+  color:var(--ink);
+  font-family:"Zen Kaku Gothic New",sans-serif;
+  font-weight:500;
+  font-size:17px;
+  line-height:1.9;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+.sp{display:none}
+
+.std{--c:var(--std);--cl:var(--std-l)}
+.mik{--c:var(--mik);--cl:var(--mik-l)}
+.ume{--c:var(--ume);--cl:var(--ume-l)}
+.zak{--c:var(--zak);--cl:var(--zak-l)}
+.wak{--c:var(--wak);--cl:var(--wak-l)}
+
+/* ---------------- 共通 ---------------- */
+.inner{max-width:1160px;margin:0 auto;padding:0 48px}
+.h2{
+  font-family:"Dela Gothic One",sans-serif;font-weight:400;
+  font-size:clamp(34px,3.8vw,54px);line-height:1.4;letter-spacing:.02em;
+}
+.h2 em{font-style:normal;color:var(--c,var(--ume))}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:14px;
+  background:var(--ink);color:var(--white);
+  font-size:19px;font-weight:900;letter-spacing:.08em;
+  padding:22px 48px;border-radius:999px;
+  box-shadow:0 6px 0 rgba(45,38,32,.25);
+  transition:transform .2s,box-shadow .2s,background .2s;
+}
+.btn::after{
+  content:"";width:10px;height:10px;
+  border-top:3px solid currentColor;border-right:3px solid currentColor;
+  transform:rotate(45deg);
+}
+.btn:hover{transform:translateY(3px);box-shadow:0 3px 0 rgba(45,38,32,.25);background:var(--ume)}
+
+/* ---------------- FV ---------------- */
+.fv{position:relative;overflow:hidden}
+.fv-top{
+  max-width:1280px;margin:0 auto;padding:22px 48px 0;
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:14px;font-weight:700;letter-spacing:.12em;
+}
+.fv-top span{color:var(--muted)}
+.fv-grid{
+  max-width:1280px;margin:0 auto;
+  padding:56px 48px 72px;
+  display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:center;
+  min-height:calc(100vh - 60px);
+}
+.fv-kicker{
+  display:inline-flex;border-radius:999px;overflow:hidden;
+  font-size:15px;font-weight:900;letter-spacing:.08em;
+}
+.fv-kicker span{padding:6px 14px;color:var(--white)}
+.fv-kicker span:nth-child(1){background:var(--std)}
+.fv-kicker span:nth-child(2){background:var(--mik)}
+.fv-kicker span:nth-child(3){background:var(--ume)}
+.fv-kicker span:nth-child(4){background:var(--zak)}
+.fv-title{
+  margin:28px 0 24px;
+  font-family:"Dela Gothic One",sans-serif;font-weight:400;
+  font-size:clamp(52px,5.8vw,86px);line-height:1.28;letter-spacing:.01em;
+}
+.fv-title .five{
+  display:inline-block;font-size:1.5em;line-height:1;color:var(--mik);
+  transform:rotate(-6deg);margin-right:.04em;
+}
+.fv-title em{font-style:normal;color:var(--ume)}
+.fv-lead{font-size:19px;font-weight:700;line-height:1.8}
+.fv-lead b{font-weight:900;background:linear-gradient(transparent 60%,var(--lemon) 60%)}
+.fv-cta{margin-top:40px}
+
+/* 5本のストライプ＋パッケージ */
+.stage{
+  position:relative;
+  display:grid;grid-template-columns:repeat(5,1fr);
+  height:min(78vh,640px);
+}
+.lane{
+  position:relative;background:var(--cl);
+  display:flex;justify-content:center;align-items:flex-end;
+  padding-bottom:var(--pb,40px);
+}
+.lane:first-child{border-radius:28px 0 0 28px}
+.lane:last-child{border-radius:0 28px 28px 0}
+.lane img{
+  width:76%;
+  transform:rotate(var(--r,0deg));
+  animation:bob 4.2s ease-in-out infinite;
+  animation-delay:var(--d,0s);
+  filter:drop-shadow(0 14px 14px rgba(45,38,32,.16));
+}
+.lane:nth-child(1){--r:-5deg;--pb:70px;--d:0s}
+.lane:nth-child(2){--r:4deg;--pb:30px;--d:.5s}
+.lane:nth-child(3){--r:-3deg;--pb:96px;--d:1s}
+.lane:nth-child(4){--r:5deg;--pb:46px;--d:1.5s}
+.lane:nth-child(5){--r:-4deg;--pb:80px;--d:2s}
+@keyframes bob{
+  0%,100%{translate:0 0}
+  50%{translate:0 -12px}
+}
+.lane-name{
+  position:absolute;top:22px;left:0;right:0;text-align:center;
+  font-size:14px;font-weight:900;color:var(--c);letter-spacing:.06em;
+}
+.x2{
+  position:absolute;z-index:2;
+  top:var(--top,34%);right:2%;
+  width:64px;height:64px;border-radius:50%;
+  background:var(--std);color:var(--white);
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Dela Gothic One",sans-serif;font-size:22px;
+  transform:rotate(-10deg);
+  border:3px solid var(--white);
+}
+.sticker{
+  position:absolute;z-index:3;
+  right:-8px;top:-40px;
+  width:210px;height:210px;border-radius:50%;
+  background:var(--lemon);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  transform:rotate(10deg);
+  box-shadow:6px 6px 0 var(--ink);
+  border:3px solid var(--ink);
+  text-align:center;
+}
+.sticker .s1{font-size:15px;font-weight:900;letter-spacing:.06em}
+.sticker .s2{font-family:"Dela Gothic One",sans-serif;font-size:42px;line-height:1.05;letter-spacing:-.01em}
+.sticker .s2 small{font-size:22px}
+.sticker .s3{font-family:"Dela Gothic One",sans-serif;font-size:24px;line-height:1.2;color:var(--ume)}
+.sticker .s4{font-size:12px;font-weight:700;margin-top:4px}
+
+/* ---------------- 流れる帯 ---------------- */
+.ticker{background:var(--ink);overflow:hidden;padding:18px 0}
+.ticker-track{display:flex;width:max-content;animation:tick 26s linear infinite}
+.ticker-track span{
+  font-family:"Dela Gothic One",sans-serif;font-size:26px;letter-spacing:.04em;
+  padding:0 26px;white-space:nowrap;color:var(--c);
+}
+.ticker-track span.sep{color:#5A5048;padding:0}
+.ticker-track .wak{--c:#B5AC9E}
+.ticker-track .zak{--c:#D24A6B}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ---------------- ふたつの声 ---------------- */
+.voices{padding:150px 0 140px}
+.voices .h2{text-align:center;margin-bottom:80px}
+.talks{max-width:920px;margin:0 auto;display:grid;gap:64px}
+.talk{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start}
+.talk.r{grid-template-columns:1fr auto}
+.talk.r .who{order:2}
+.who{
+  width:96px;height:96px;border-radius:50%;
+  background:var(--c);color:var(--white);
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  font-size:15px;font-weight:900;line-height:1.35;
+}
+.bubble{
+  position:relative;background:var(--white);
+  border:3px solid var(--ink);border-radius:28px;
+  padding:28px 36px;
+}
+.bubble::before{ /* しっぽ */
+  content:"";position:absolute;top:30px;left:-15px;
+  width:24px;height:24px;background:var(--white);
+  border-left:3px solid var(--ink);border-bottom:3px solid var(--ink);
+  transform:rotate(45deg);
+}
+.talk.r .bubble::before{left:auto;right:-15px;transform:rotate(-135deg)}
+.bubble q{
+  display:block;quotes:none;
+  font-size:clamp(22px,2.3vw,28px);font-weight:900;line-height:1.6;
+}
+.bubble p{margin-top:14px;font-size:17px}
+.bubble p b{font-weight:900;background:linear-gradient(transparent 60%,var(--cl) 60%)}
+
+/* ---------------- BOXの中身 ---------------- */
+.box{background:var(--white);padding:140px 0 150px;border-radius:48px 48px 0 0}
+.box-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:64px}
+.box-head p{font-size:18px;max-width:440px}
+.cards{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;list-style:none}
+.card{
+  position:relative;background:var(--cl);border-radius:24px;
+  padding:28px 18px 26px;text-align:center;
+  transition:transform .25s;
+}
+.card:hover{transform:translateY(-6px)}
+.card img{width:58%;margin:0 auto;transform:rotate(var(--r,-3deg));transition:transform .3s}
+.card:hover img{transform:rotate(0deg) scale(1.04)}
+.card:nth-child(even){--r:3deg}
+.card .cnt{
+  position:absolute;z-index:2;top:16px;right:14px;
+  width:58px;height:58px;border-radius:50%;
+  background:var(--c);color:var(--white);
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Dela Gothic One",sans-serif;font-size:21px;
+}
+.card h3{
+  margin-top:22px;
+  font-family:"Dela Gothic One",sans-serif;font-weight:400;
+  font-size:22px;line-height:1.35;color:var(--c);
+}
+.card p{margin-top:10px;font-size:15px;line-height:1.75;text-align:left}
+.formula{
+  margin-top:64px;
+  display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:12px 22px;
+  font-family:"Dela Gothic One",sans-serif;font-size:clamp(28px,3.2vw,44px);line-height:1.2;
+}
+.formula .op{color:var(--muted);font-size:.8em}
+.formula .ans{background:var(--lemon);padding:6px 26px;border-radius:999px;transform:rotate(-2deg)}
+.formula small{font-size:.55em}
+.scroll-hint{display:none}
+
+/* ---------------- すごろく ---------------- */
+.course{background:#FFF4C9;padding:140px 0 150px}
+.course .h2{margin-bottom:24px}
+.course-lead{font-size:18px;max-width:640px}
+.board{
+  list-style:none;margin-top:88px;
+  display:grid;grid-template-columns:repeat(6,1fr);gap:20px;
+  position:relative;
+}
+.board::before{ /* マスをつなぐ道 */
+  content:"";position:absolute;left:6%;right:6%;top:50%;height:10px;margin-top:-5px;
+  background:repeating-linear-gradient(90deg,var(--ink) 0 18px,transparent 18px 30px);
+  opacity:.18;
+}
+.sq{
+  position:relative;background:var(--white);
+  border:3px solid var(--ink);border-radius:22px;
+  padding:52px 14px 20px;text-align:center;
+}
+.sq .no{
+  position:absolute;top:-24px;left:50%;margin-left:-24px;
+  width:48px;height:48px;border-radius:50%;
+  background:var(--c);color:var(--white);border:3px solid var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Dela Gothic One",sans-serif;font-size:22px;
+}
+.sq .flag{
+  position:absolute;top:-62px;left:0;right:0;text-align:center;
+  font-family:"Dela Gothic One",sans-serif;font-size:18px;letter-spacing:.06em;
+}
+.sq img{height:150px;width:auto;margin:0 auto 14px;transform:rotate(var(--r,-4deg))}
+.sq:nth-child(even){--r:4deg}
+.sq h3{font-size:18px;font-weight:900;line-height:1.45;color:var(--c)}
+.sq p{margin-top:6px;font-size:14px;line-height:1.7;text-align:left}
+.why{
+  margin-top:72px;
+  display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:center;
+  background:var(--white);border-radius:28px;padding:36px 44px;
+}
+.why-q{
+  font-family:"Dela Gothic One",sans-serif;font-size:clamp(22px,2.2vw,30px);line-height:1.45;
+  color:var(--std);
+}
+.why p{font-size:17px}
+.course-free{margin-top:22px;font-size:15px;color:var(--muted)}
+
+/* ---------------- 推し味ノート ---------------- */
+.note{padding:140px 0 150px}
+.note-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:start;margin-top:56px}
+.note-lead{font-size:18px;max-width:640px;margin-top:20px}
+.sheet{background:var(--white);border-radius:28px;padding:24px 36px;border:3px solid var(--ink)}
+.rate{list-style:none}
+.rate li{
+  display:grid;grid-template-columns:44px 1fr auto;gap:18px;align-items:center;
+  padding:16px 0;border-bottom:2px dashed #EADFCF;
+}
+.rate li:last-child{border-bottom:none}
+.rate .thumb{width:44px;height:70px;object-fit:cover;object-position:top;border-radius:6px}
+.rate .fl{font-family:"Dela Gothic One",sans-serif;font-size:21px;color:var(--c)}
+.dots{display:flex;gap:10px}
+.dot{
+  width:34px;height:34px;border-radius:50%;
+  background:var(--cl);
+  transition:background .2s,transform .2s;
+}
+.dot:hover{transform:scale(1.12)}
+.dot.on{background:var(--c);animation:pop .3s}
+@keyframes pop{50%{transform:scale(1.25)}}
+.dot:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.scale{display:flex;justify-content:flex-end;gap:10px;font-size:13px;color:var(--muted);margin:10px 0 4px;font-weight:700}
+
+.result{
+  position:sticky;top:24px;
+  background:var(--cl,#F1EBE1);border-radius:28px;
+  padding:40px 32px 36px;text-align:center;
+  transition:background .3s;
+}
+.result-q{font-size:16px;font-weight:900;letter-spacing:.1em}
+.result-img{height:260px;margin:24px auto 20px;display:flex;justify-content:center;align-items:center;gap:6px}
+.result-img img{height:100%;width:auto;transform:rotate(-4deg)}
+.result-img img.in{animation:jump .5s cubic-bezier(.3,1.6,.5,1)}
+@keyframes jump{from{transform:translateY(30px) rotate(-12deg) scale(.8);opacity:0}to{transform:rotate(-4deg);opacity:1}}
+.result-q2{
+  width:120px;height:220px;border-radius:14px;border:3px dashed #CFC3B2;
+  display:flex;align-items:center;justify-content:center;
+  font-family:"Dela Gothic One",sans-serif;font-size:60px;color:#CFC3B2;
+}
+.result-a{font-family:"Dela Gothic One",sans-serif;font-size:clamp(26px,2.8vw,36px);line-height:1.35;color:var(--c,var(--muted))}
+.result-a.empty{font-size:17px;font-family:"Zen Kaku Gothic New",sans-serif;font-weight:700;color:var(--muted)}
+.result-link{
+  display:none;margin-top:20px;
+  background:var(--c);color:var(--white);
+  font-size:16px;font-weight:900;padding:14px 26px;border-radius:999px;
+}
+.result-link.show{display:inline-block}
+.note-cap{margin-top:16px;font-size:13px;color:var(--muted)}
+
+/* ---------------- 推し味が決まったら ---------------- */
+.next{background:var(--white);padding:140px 0 150px;border-radius:48px 48px 0 0}
+.next-lead{font-size:18px;max-width:640px;margin-top:20px}
+.tiles{margin-top:56px;display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.tile{
+  position:relative;overflow:hidden;
+  background:var(--c);color:var(--white);
+  border-radius:24px;padding:28px 24px 0;min-height:340px;
+  display:flex;flex-direction:column;
+  transition:transform .25s;
+}
+.tile:hover{transform:translateY(-6px)}
+.tile .t{font-family:"Dela Gothic One",sans-serif;font-size:24px;line-height:1.3;padding-right:46px}
+.tile .s{font-size:13px;font-weight:700;opacity:.92;margin-top:6px;line-height:1.6}
+.tile .go{
+  position:absolute;right:20px;top:26px;
+  width:40px;height:40px;border-radius:50%;background:var(--white);
+}
+.tile .go::after{
+  content:"";position:absolute;left:12px;top:14px;width:10px;height:10px;
+  border-top:3px solid var(--ink);border-right:3px solid var(--ink);transform:rotate(45deg);
+}
+.tile .pk{display:flex;gap:8px;justify-content:center;margin-top:auto;padding-top:20px}
+.tile .pk img{width:76px;margin-bottom:-60px;transform:rotate(-6deg);transition:margin .3s}
+.tile .pk img + img{transform:rotate(6deg)}
+.tile:hover .pk img{margin-bottom:-36px}
+.tile.dual{background:linear-gradient(135deg,var(--std) 50%,var(--ume) 50%)}
+
+/* ---------------- 購入 ---------------- */
+.buy{background:var(--lemon);padding:130px 0 110px}
+.buy-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.buy-title{font-family:"Dela Gothic One",sans-serif;font-weight:400;font-size:clamp(30px,3.2vw,44px);line-height:1.4}
+.buy-price{margin-top:20px;font-family:"Dela Gothic One",sans-serif;line-height:1}
+.buy-price .num{font-size:clamp(84px,9vw,128px)}
+.buy-price .unit{font-size:clamp(28px,3vw,40px);margin-left:6px}
+.buy-price .unit2{display:block;margin-top:10px;font-size:clamp(28px,3vw,40px);color:var(--ume)}
+.buy-note{margin-top:14px;font-size:15px;font-weight:700}
+.buy .btn{margin-top:36px}
+.buy .btn:hover{background:var(--zak)}
+.buy-fan{display:flex;justify-content:center;align-items:flex-end;height:420px}
+.buy-fan img{width:92px;margin:0 -6px;filter:drop-shadow(0 12px 12px rgba(45,38,32,.18))}
+.buy-fan img:nth-child(1){transform:rotate(-16deg) translateY(30px)}
+.buy-fan img:nth-child(2){transform:rotate(-8deg) translateY(8px)}
+.buy-fan img:nth-child(4){transform:rotate(8deg) translateY(8px)}
+.buy-fan img:nth-child(5){transform:rotate(16deg) translateY(30px)}
+.spec{
+  margin-top:72px;background:var(--white);border-radius:24px;padding:12px 36px;
+  display:grid;grid-template-columns:110px 1fr;
+}
+.spec dt,.spec dd{padding:16px 0;border-bottom:2px dashed #EADFCF;font-size:16px}
+.spec dt{font-weight:900}
+.spec dt.last,.spec dd.last{border-bottom:none}
+.buy-notes{margin-top:28px;font-size:14px;line-height:2}
+footer{background:var(--ink);color:#BFB4A7;text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padding:28px 0}
+
+@media (prefers-reduced-motion:reduce){
+  .lane img,.ticker-track{animation:none}
+  *{transition:none !important}
+}
+
+/* =========================================================
+   SP（PCの縮小ではなく、SP用に組み直す）
+   ========================================================= */
+@media (max-width:767px){
+  body{font-size:16px}
+  .pc{display:none}
+  .sp{display:inline}
+  .inner{padding:0 20px}
+  .h2{font-size:clamp(27px,7.6vw,32px)}
+  .btn{width:100%;font-size:18px;padding:20px}
+
+  .fv-top{padding:16px 20px 0;font-size:12px}
+  .fv-top span{display:none}
+  .fv-grid{display:block;min-height:auto;padding:22px 20px 56px}
+  .fv-kicker{font-size:12px}
+  .fv-kicker span{padding:5px 10px}
+  .fv-title{font-size:clamp(40px,11.4vw,48px);margin:20px 0 16px}
+  .fv-lead{font-size:16px}
+  .stage{height:330px;margin-top:84px}
+  .lane:first-child{border-radius:20px 0 0 20px}
+  .lane:last-child{border-radius:0 20px 20px 0}
+  .lane img{width:84%}
+  .lane:nth-child(1){--pb:38px}
+  .lane:nth-child(2){--pb:16px}
+  .lane:nth-child(3){--pb:54px}
+  .lane:nth-child(4){--pb:24px}
+  .lane:nth-child(5){--pb:44px}
+  .lane-name{top:12px;font-size:9px;letter-spacing:0}
+  .x2{width:42px;height:42px;font-size:14px;border-width:2px;right:-6px}
+  .sticker{width:136px;height:136px;right:-8px;top:-70px;box-shadow:4px 4px 0 var(--ink);border-width:2px}
+  .sticker .s1{font-size:10px}
+  .sticker .s2{font-size:31px}
+  .sticker .s2 small{font-size:14px}
+  .sticker .s3{font-size:16px}
+  .sticker .s4{font-size:9px}
+  .fv-cta{margin-top:32px}
+  .fv-cta.sp{display:block}
+
+  .ticker{padding:12px 0}
+  .ticker-track span{font-size:18px;padding:0 16px}
+
+  .voices{padding:100px 0 90px}
+  .voices .h2{margin-bottom:48px}
+  .talks{gap:40px}
+  .talk,.talk.r{grid-template-columns:1fr;gap:14px}
+  .talk.r .who{order:0;justify-self:end}
+  .who{width:72px;height:72px;font-size:12px}
+  .bubble{padding:22px;border-radius:22px}
+  .bubble::before{top:-15px;left:26px;transform:rotate(135deg)}
+  .talk.r .bubble::before{left:auto;right:26px;transform:rotate(135deg)}
+  .bubble q{font-size:19px}
+  .bubble p{font-size:15px}
+
+  .box{padding:96px 0 100px;border-radius:32px 32px 0 0}
+  .box-head{display:block;margin-bottom:36px}
+  .box-head p{font-size:16px;margin-top:16px}
+  .cards{
+    display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;
+    margin:0 -20px;padding:4px 20px 16px;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;
+  }
+  .cards::-webkit-scrollbar{display:none}
+  .card{flex:0 0 64%;scroll-snap-align:center}
+  .card img{width:32%}
+  .scroll-hint{display:block;text-align:right;font-size:13px;font-weight:700;color:var(--muted);margin-top:6px}
+  .formula{margin-top:44px;font-size:24px;gap:8px 10px}
+  .formula .ans{padding:4px 18px}
+
+  .course{padding:96px 0 100px}
+  .course-lead{font-size:16px}
+  .board{grid-template-columns:1fr;gap:26px;margin-top:48px}
+  .board::before{left:50%;right:auto;top:0;bottom:0;width:8px;height:auto;margin:0 0 0 -4px;
+    background:repeating-linear-gradient(180deg,var(--ink) 0 14px,transparent 14px 24px)}
+  .sq{display:grid;grid-template-columns:64px 1fr;gap:16px;align-items:center;text-align:left;padding:20px 18px 18px 20px}
+  .sq .no{top:-16px;left:-10px;margin:0;width:40px;height:40px;font-size:18px}
+  .sq .flag{top:-14px;left:auto;right:16px;font-size:13px;background:var(--ink);color:var(--white);padding:2px 12px;border-radius:999px}
+  .sq img{height:110px;margin:0 auto}
+  .sq h3{font-size:18px}
+  .why{grid-template-columns:1fr;gap:12px;padding:26px 22px;margin-top:44px}
+  .why-q{font-size:22px}
+  .why p{font-size:15px}
+
+  .note{padding:96px 0 100px}
+  .note-lead{font-size:16px}
+  .note-grid{grid-template-columns:1fr;gap:28px;margin-top:36px}
+  .sheet{padding:10px 16px;border-radius:22px}
+  .rate li{grid-template-columns:34px 1fr;gap:6px 12px;padding:14px 0}
+  .rate .thumb{width:34px;height:54px;grid-row:1 / 3}
+  .rate .fl{font-size:17px}
+  .dots{gap:8px}
+  .dot{width:36px;height:36px}
+  .result{position:static;padding:30px 20px}
+  .result-img{height:190px;margin:16px auto}
+  .result-q2{width:90px;height:170px;font-size:44px}
+
+  .next{padding:96px 0 100px;border-radius:32px 32px 0 0}
+  .next-lead{font-size:16px}
+  .tiles{grid-template-columns:1fr 1fr;gap:12px;margin-top:36px}
+  .tile{min-height:250px;padding:20px 16px 0;border-radius:20px}
+  .tile .t{font-size:18px;padding-right:0}
+  .tile .s{font-size:11px}
+  .tile .go{width:30px;height:30px;right:12px;top:auto;bottom:12px;z-index:2}
+  .tile .go::after{left:8px;top:10px;width:8px;height:8px;border-width:2px}
+  .tile .pk img{width:56px;margin-bottom:-50px}
+
+  .buy{padding:80px 0 80px}
+  .buy-grid{grid-template-columns:1fr;gap:20px}
+  .buy-fan{order:-1;height:250px}
+  .buy-fan img{width:58px}
+  .buy-title{font-size:28px}
+  .buy-price .num{font-size:70px}
+  .buy-price .unit,.buy-price .unit2{font-size:28px}
+  .spec{grid-template-columns:1fr;padding:6px 20px;margin-top:48px}
+  .spec dt{border-bottom:none;padding:16px 0 0;font-size:13px}
+  .spec dd{padding:0 0 16px;font-size:15px}
+}
+</style>
+</head>
+<body>
+
+<!-- ======================= FV ======================= -->
+<header class="fv">
+  <div class="fv-top">断食道場shop<span>秋の優光泉 味くらべフェア</span></div>
+
+  <div class="fv-grid">
+    <div class="fv-text">
+      <p class="fv-kicker"><span>秋の</span><span>優光泉</span><span>味くらべ</span><span>フェア</span></p>
+      <h1 class="fv-title"><span class="five">5</span>つの味、<br>どれが<em>好き</em>？</h1>
+      <p class="fv-lead">
+        優光泉の個包装を、5つの味で6包。<br>
+        <b>はじめての方も、いつもの方も、</b><br>飲みくらべで推し味さがし。
+      </p>
+      <!-- BOX_URL -->
+      <p class="fv-cta pc"><a class="btn" href="https://item.rakuten.co.jp/danjiki-dojo/c/0000000211/">飲みくらべBOXを買う</a></p>
+    </div>
+
+    <div class="stage" aria-label="BOXに入る5つの味">
+      <div class="lane std"><span class="lane-name">スタンダード</span><img src="img/pk-std.webp" alt="ポケット優光泉 スタンダード" width="360" height="1313"><span class="x2" style="--top:30%">×2</span></div>
+      <div class="lane mik"><span class="lane-name">ミカン</span><img src="img/pk-mik.webp" alt="ポケット優光泉 ミカン" width="360" height="1308"></div>
+      <div class="lane ume"><span class="lane-name">梅</span><img src="img/pk-ume.webp" alt="ポケット優光泉 梅" width="360" height="1313"></div>
+      <div class="lane zak"><span class="lane-name">ザクローズ</span><img src="img/pk-zak.webp" alt="ポケット優光泉 ザクローズ" width="360" height="1313"></div>
+      <div class="lane wak"><span class="lane-name">濃縮和漢発酵</span><img src="img/pk-wak.webp" alt="ポケット優光泉 濃縮和漢発酵" width="360" height="1313"></div>
+
+      <div class="sticker">
+        <span class="s1">5つの味・6包で</span>
+        <span class="s2">1,000<small>円</small></span>
+        <span class="s3">ポッキリ</span>
+        <span class="s4">税込・送料無料</span>
+      </div>
+    </div>
+
+    <!-- BOX_URL -->
+    <p class="fv-cta sp"><a class="btn" href="https://item.rakuten.co.jp/danjiki-dojo/c/0000000211/">飲みくらべBOXを買う</a></p>
+  </div>
+</header>
+
+<!-- ======================= 流れる帯 ======================= -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="std">スタンダード</span><span class="sep">/</span><span class="mik">ミカン</span><span class="sep">/</span><span class="ume">梅</span><span class="sep">/</span><span class="zak">ザクローズ</span><span class="sep">/</span><span class="wak">濃縮和漢発酵</span><span class="sep">/</span><span class="std">スタンダード</span><span class="sep">/</span><span class="mik">ミカン</span><span class="sep">/</span><span class="ume">梅</span><span class="sep">/</span><span class="zak">ザクローズ</span><span class="sep">/</span><span class="wak">濃縮和漢発酵</span><span class="sep">/</span>
+    <span class="std">スタンダード</span><span class="sep">/</span><span class="mik">ミカン</span><span class="sep">/</span><span class="ume">梅</span><span class="sep">/</span><span class="zak">ザクローズ</span><span class="sep">/</span><span class="wak">濃縮和漢発酵</span><span class="sep">/</span><span class="std">スタンダード</span><span class="sep">/</span><span class="mik">ミカン</span><span class="sep">/</span><span class="ume">梅</span><span class="sep">/</span><span class="zak">ザクローズ</span><span class="sep">/</span><span class="wak">濃縮和漢発酵</span><span class="sep">/</span>
+  </div>
+</div>
+
+<main>
+
+<!-- ======================= ふたつの声 ======================= -->
+<section class="voices">
+  <div class="inner">
+    <h2 class="h2">はじめての人も、<br class="sp">いつもの人も。</h2>
+
+    <div class="talks">
+      <div class="talk mik">
+        <p class="who">はじめて<br>の方</p>
+        <div class="bubble">
+          <q>味がたくさんあって、<br>どれを買えばいいか<br class="sp">分からない…</q>
+          <p>大きなボトルを買う前に、<b>5つの味をぜんぶ飲んでから選べます。</b>自分の好みが分かってから、続ける味を決めてください。</p>
+        </div>
+      </div>
+      <div class="talk r ume">
+        <p class="who">いつも<br>の方</p>
+        <div class="bubble">
+          <q>ずっと同じ味。<br>ザクローズも和漢も、<br class="sp">実は飲んだことがない…</q>
+          <p>いつもの味のとなりに、まだ知らない味をならべて。<b>この秋は、いつもと違う一杯を見つけるきっかけに。</b></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= BOXの中身 ======================= -->
+<section class="box" id="box">
+  <div class="inner">
+    <div class="box-head">
+      <h2 class="h2 mik">BOXの中身は、<br><em>5つの味</em>で6包。</h2>
+      <p>持ち歩きにも便利な個包装タイプ「ポケット優光泉」。1包ずつ封を切って、気軽に飲みくらべできます。</p>
+    </div>
+
+    <ul class="cards">
+      <li class="card std">
+        <span class="cnt">×2</span>
+        <img src="img/pk-std.webp" alt="スタンダード" width="360" height="1313" loading="lazy">
+        <h3>スタンダード</h3>
+        <p>いちばん定番の、優光泉の基本の味。最初と最後に飲むので2包入り。</p>
+      </li>
+      <li class="card mik">
+        <span class="cnt">×1</span>
+        <img src="img/pk-mik.webp" alt="ミカン" width="360" height="1308" loading="lazy">
+        <h3>ミカン</h3>
+        <p>やさしい甘さで続けやすい、新しい味。</p>
+      </li>
+      <li class="card ume">
+        <span class="cnt">×1</span>
+        <img src="img/pk-ume.webp" alt="梅" width="360" height="1313" loading="lazy">
+        <h3>梅</h3>
+        <p>スタンダードと並ぶ、定番の味。</p>
+      </li>
+      <li class="card zak">
+        <span class="cnt">×1</span>
+        <img src="img/pk-zak.webp" alt="ザクローズ" width="360" height="1313" loading="lazy">
+        <h3>ザクローズ</h3>
+        <p>ザクロを使った、果物の味わいの一杯。</p>
+      </li>
+      <li class="card wak">
+        <span class="cnt">×1</span>
+        <img src="img/pk-wak.webp" alt="濃縮和漢発酵" width="360" height="1313" loading="lazy">
+        <h3>濃縮和漢発酵</h3>
+        <p>「まずそう」の常識をくつがえす、和漢の味。</p>
+      </li>
+    </ul>
+    <p class="scroll-hint">横にスクロールできます →</p>
+
+    <p class="formula"><span>5つの味</span><span class="op">×</span><span>6包</span><span class="op">＝</span><span class="ans">1,000<small>円ポッキリ</small></span></p>
+  </div>
+</section>
+
+<!-- ======================= すごろく ======================= -->
+<section class="course">
+  <div class="inner">
+    <h2 class="h2 std">飲む順番は、<br class="sp"><em>すごろく式</em>で。</h2>
+    <p class="course-lead">なじみのある味から、だんだん個性の強い味へ。この順番で進むと、味のちがいがよく分かります。</p>
+
+    <ol class="board">
+      <li class="sq std">
+        <span class="flag">START</span><span class="no">1</span>
+        <img src="img/pk-std.webp" alt="" width="360" height="1313" loading="lazy">
+        <div><h3>まずは<br class="pc">基準の味</h3><p>優光泉の基本の味を、最初に覚えておきます。</p></div>
+      </li>
+      <li class="sq ume">
+        <span class="no">2</span>
+        <img src="img/pk-ume.webp" alt="" width="360" height="1313" loading="lazy">
+        <div><h3>定番の<br class="pc">もう一方</h3><p>スタンダードとのちがいを、くらべてみて。</p></div>
+      </li>
+      <li class="sq mik">
+        <span class="no">3</span>
+        <img src="img/pk-mik.webp" alt="" width="360" height="1308" loading="lazy">
+        <div><h3>やさしい<br class="pc">甘さ</h3><p>果物の味は、ここから。いちばん新しい味です。</p></div>
+      </li>
+      <li class="sq zak">
+        <span class="no">4</span>
+        <img src="img/pk-zak.webp" alt="" width="360" height="1313" loading="lazy">
+        <div><h3>果物どうしで<br class="pc">くらべる</h3><p>ひとつ前のミカンと、くらべてみてください。</p></div>
+      </li>
+      <li class="sq wak">
+        <span class="no">5</span>
+        <img src="img/pk-wak.webp" alt="" width="360" height="1313" loading="lazy">
+        <div><h3>いちばんの<br class="pc">個性派</h3><p>「まずそう」の予想が、くつがえるかどうか。</p></div>
+      </li>
+      <li class="sq std">
+        <span class="flag">GOAL</span><span class="no">6</span>
+        <img src="img/pk-std.webp" alt="" width="360" height="1313" loading="lazy">
+        <div><h3>もう一度<br class="pc">最初の味へ</h3><p>4つの味を知ったあとで、基準の味をもう一度。</p></div>
+      </li>
+    </ol>
+
+    <div class="why">
+      <p class="why-q">スタンダードが<br class="pc">2包入っている理由</p>
+      <p>最初と最後に同じ味を飲むと、ほかの4つの味を知ったあとで、最初の味がどう感じられるかが分かります。最初とちがって感じたら、それも飲みくらべならではの発見です。</p>
+    </div>
+    <p class="course-free">※ 順番は自由です。1日1包ずつでも、何包かまとめて飲みくらべても楽しめます。</p>
+  </div>
+</section>
+
+<!-- ======================= 推し味ノート ======================= -->
+<section class="note">
+  <div class="inner">
+    <h2 class="h2 ume">飲んだら、<br class="sp"><em>推し味</em>をえらぼう。</h2>
+    <p class="note-lead">それぞれの味の「好き度」を、丸をタップして5段階でつけてください。いちばん好きな味が、あなたの推し味です。</p>
+
+    <div class="note-grid">
+      <div class="sheet">
+        <ul class="rate" id="rate">
+          <li class="std" data-name="スタンダード" data-img="img/pk-std.webp" data-url="https://item.rakuten.co.jp/danjiki-dojo/0002/"><img class="thumb" src="img/pk-std.webp" alt="" loading="lazy"><span class="fl">スタンダード</span><div class="dots"></div></li>
+          <li class="mik" data-name="ミカン" data-img="img/pk-mik.webp" data-url="https://item.rakuten.co.jp/danjiki-dojo/7003/"><img class="thumb" src="img/pk-mik.webp" alt="" loading="lazy"><span class="fl">ミカン</span><div class="dots"></div></li>
+          <li class="ume" data-name="梅" data-img="img/pk-ume.webp" data-url="https://item.rakuten.co.jp/danjiki-dojo/0002/"><img class="thumb" src="img/pk-ume.webp" alt="" loading="lazy"><span class="fl">梅</span><div class="dots"></div></li>
+          <li class="zak" data-name="ザクローズ" data-img="img/pk-zak.webp" data-url="https://item.rakuten.co.jp/danjiki-dojo/0058/"><img class="thumb" src="img/pk-zak.webp" alt="" loading="lazy"><span class="fl">ザクローズ</span><div class="dots"></div></li>
+          <li class="wak" data-name="濃縮和漢発酵" data-img="img/pk-wak.webp" data-url="https://item.rakuten.co.jp/danjiki-dojo/0046/"><img class="thumb" src="img/pk-wak.webp" alt="" loading="lazy"><span class="fl">濃縮和漢発酵</span><div class="dots"></div></li>
+        </ul>
+        <p class="scale"><span>ふつう</span><span>→</span><span>大好き</span></p>
+      </div>
+
+      <div class="result" id="result" aria-live="polite">
+        <p class="result-q">わたしの推し味は…</p>
+        <div class="result-img" id="resultImg"><div class="result-q2">？</div></div>
+        <p class="result-a empty" id="resultA">丸をタップしてみてください</p>
+        <a class="result-link" id="resultLink" href="#">この味の15包を見る</a>
+      </div>
+    </div>
+    <p class="note-cap">※ このノートはページ上でお試しいただけるものです。入力内容は保存されません。</p>
+  </div>
+</section>
+
+<!-- ======================= 推し味が決まったら ======================= -->
+<section class="next">
+  <div class="inner">
+    <h2 class="h2">推し味が決まったら、<br>いつもの一杯に。</h2>
+    <p class="next-lead">気に入った味は、同じ個包装タイプ（20ml×15包）でどうぞ。いくつか気に入ったら、日によって飲み分けるのもおすすめです。</p>
+
+    <div class="tiles">
+      <a class="tile dual" href="https://item.rakuten.co.jp/danjiki-dojo/0002/">
+        <span class="t">スタンダード<br>／梅</span><span class="s">ポケット優光泉<br>20ml×15包</span><span class="go"></span>
+        <span class="pk"><img src="img/pk-std.webp" alt="" loading="lazy"><img src="img/pk-ume.webp" alt="" loading="lazy"></span>
+      </a>
+      <a class="tile mik" href="https://item.rakuten.co.jp/danjiki-dojo/7003/">
+        <span class="t">ミカン</span><span class="s">みかん味 ポケットタイプ<br>20ml×15包</span><span class="go"></span>
+        <span class="pk"><img src="img/pk-mik.webp" alt="" loading="lazy"></span>
+      </a>
+      <a class="tile zak" href="https://item.rakuten.co.jp/danjiki-dojo/0058/">
+        <span class="t">ザクローズ</span><span class="s">ポケット優光泉<br>20ml×15包</span><span class="go"></span>
+        <span class="pk"><img src="img/pk-zak.webp" alt="" loading="lazy"></span>
+      </a>
+      <a class="tile wak" href="https://item.rakuten.co.jp/danjiki-dojo/0046/">
+        <span class="t">濃縮和漢<br>発酵</span><span class="s">ポケット優光泉<br>20ml×15包</span><span class="go"></span>
+        <span class="pk"><img src="img/pk-wak.webp" alt="" loading="lazy"></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 購入 ======================= -->
+<section class="buy" id="buy">
+  <div class="inner">
+    <div class="buy-grid">
+      <div>
+        <h2 class="buy-title">秋の優光泉<br>飲みくらべBOX</h2>
+        <p class="buy-price"><span class="num">1,000</span><span class="unit">円</span><span class="unit2">ポッキリ！</span></p>
+        <p class="buy-note">税込・送料無料 ／ 期間限定</p>
+        <!-- BOX_URL -->
+        <a class="btn" href="https://item.rakuten.co.jp/danjiki-dojo/c/0000000211/">飲みくらべBOXを買う</a>
+      </div>
+      <div class="buy-fan" aria-hidden="true">
+        <img src="img/pk-std.webp" alt="" loading="lazy">
+        <img src="img/pk-mik.webp" alt="" loading="lazy">
+        <img src="img/pk-ume.webp" alt="" loading="lazy">
+        <img src="img/pk-zak.webp" alt="" loading="lazy">
+        <img src="img/pk-wak.webp" alt="" loading="lazy">
+      </div>
+    </div>
+
+    <dl class="spec">
+      <dt>内容</dt><dd>ポケット優光泉 20ml × 6包</dd>
+      <dt>味</dt><dd>スタンダード 2包、ミカン 1包、梅 1包、ザクローズ 1包、濃縮和漢発酵 1包</dd>
+      <dt>価格</dt><dd>1,000円（税込・送料無料）</dd>
+      <dt class="last">販売</dt><dd class="last">秋の優光泉 味くらべフェア 期間限定</dd>
+    </dl>
+    <p class="buy-notes">
+      ※ 飲み方・保存方法は、商品に記載の表示をご確認ください。<br>
+      ※ パッケージデザインは変更になる場合があります。<br>
+      ※ 期間中でも、予定数量に達しだい販売を終了します。
+    </p>
+  </div>
+</section>
+
+</main>
+<footer>断食道場shop</footer>
+
+<script>
+/* 推し味ノート：5段階の好き度 → いちばん高い味を推し味として表示（保存はしない） */
+(function(){
+  var rows = document.querySelectorAll("#rate li");
+  var score = {};
+  rows.forEach(function(li){
+    var box = li.querySelector(".dots");
+    box.setAttribute("role","radiogroup");
+    box.setAttribute("aria-label", li.dataset.name + "の好き度");
+    for(var i=1;i<=5;i++){
+      var b = document.createElement("button");
+      b.className = "dot";
+      b.setAttribute("role","radio");
+      b.setAttribute("aria-checked","false");
+      b.setAttribute("aria-label", i + "（5段階）");
+      b.dataset.i = i;
+      box.appendChild(b);
+    }
+    box.addEventListener("click", function(e){
+      var d = e.target.closest(".dot"); if(!d) return;
+      var n = +d.dataset.i;
+      box.querySelectorAll(".dot").forEach(function(x){
+        x.classList.toggle("on", +x.dataset.i <= n);
+        x.setAttribute("aria-checked", +x.dataset.i === n ? "true" : "false");
+      });
+      score[li.dataset.name] = n;
+      update();
+    });
+  });
+
+  var result = document.getElementById("result");
+  var a = document.getElementById("resultA");
+  var imgBox = document.getElementById("resultImg");
+  var link = document.getElementById("resultLink");
+  var current = "";
+  function update(){
+    var max = 0, top = [];
+    rows.forEach(function(li){
+      var s = score[li.dataset.name] || 0;
+      if(s > max){ max = s; top = [li]; }
+      else if(s === max && s > 0){ top.push(li); }
+    });
+    if(!top.length) return;
+    var key = top.map(function(li){ return li.dataset.name; }).join("・");
+    if(key === current) return;
+    current = key;
+
+    a.classList.remove("empty");
+    result.className = "result " + (top.length === 1 ? top[0].className : "");
+    imgBox.innerHTML = top.map(function(li){
+      return '<img class="in" src="' + li.dataset.img + '" alt="' + li.dataset.name + '">';
+    }).join("");
+    a.textContent = key + (top.length > 1 ? "（同点）" : "");
+    if(top.length === 1){
+      link.href = top[0].dataset.url;
+      link.classList.add("show");
+    }else{
+      link.classList.remove("show");
+    }
+  }
+})();
+</script>
+</body>
+</html>
