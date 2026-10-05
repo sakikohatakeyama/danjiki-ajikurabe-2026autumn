@@ -225,13 +225,22 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 .flavor-notes li{display:grid;grid-template-columns:160px 1fr;gap:20px;padding:14px 4px;border-bottom:1px solid var(--line);font-size:16px}
 .flavor-notes b{font-weight:900;color:var(--c)}
 
-/* POINT 02：自由な飲み方 */
-.ways{margin:48px auto 0;max-width:900px;list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.ways li{border:2px solid var(--ink);border-radius:16px;background:#fff;padding:26px 20px 24px}
-.ways-pk{height:120px;display:flex;justify-content:center;align-items:flex-end;gap:6px}
-.ways-pk img{height:100%;width:auto}
-.ways b{display:block;margin-top:18px;font-size:19px;font-weight:900}
-.ways p{margin-top:6px;font-size:15px;line-height:1.75}
+/* POINT 02：DAY1〜6 */
+.days{margin:44px auto 0;max-width:720px}
+.days-cap{display:inline-block;font-size:15px;font-weight:900;background:var(--soft);padding:6px 18px;border-radius:999px}
+.days ol{list-style:none;margin-top:28px;display:grid;grid-template-columns:repeat(6,1fr);gap:12px;position:relative}
+.days ol::before{content:"";position:absolute;left:8%;right:8%;top:30px;height:2px;background:var(--ink)}
+.days li{position:relative;text-align:center}
+.day{
+  position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  width:60px;height:60px;margin:0 auto;border-radius:50%;background:var(--ink);color:#fff;
+  font-size:11px;font-weight:700;letter-spacing:.1em;line-height:1.1;
+}
+.day b{font-size:22px;font-weight:900;letter-spacing:0}
+.dcard{margin-top:14px;border:2px solid var(--ink);border-radius:14px;background:#fff;padding:14px 6px 12px}
+.dcard img{height:120px;width:auto;margin:0 auto}
+.dcard .nm{display:block;margin-top:8px;font-size:13px;font-weight:900;color:var(--c);line-height:1.4}
+.days-note{margin-top:18px;font-size:13px;color:var(--muted)}
 .why{
   margin:44px auto 0;max-width:760px;text-align:left;
   background:var(--soft);border-radius:18px;padding:28px 32px;
@@ -375,11 +384,14 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
   .dia-list .ct{font-size:10px;padding:1px 7px;top:-11px;right:-4px}
   .flavor-notes li{grid-template-columns:1fr;gap:2px;font-size:14px;padding:12px 2px}
 
-  .ways{grid-template-columns:1fr;gap:12px;margin-top:32px}
-  .ways li{display:grid;grid-template-columns:96px 1fr;gap:4px 16px;align-items:center;text-align:left;padding:18px 16px}
-  .ways-pk{height:76px;grid-row:1 / 3;gap:3px}
-  .ways b{margin-top:0;font-size:17px}
-  .ways p{margin-top:0;font-size:14px}
+  .days{margin-top:32px}
+  .days ol{grid-template-columns:repeat(3,1fr);gap:20px 10px}
+  .days ol::before{display:none}
+  .day{width:52px;height:52px}
+  .day b{font-size:19px}
+  .dcard{margin-top:10px;padding:10px 4px}
+  .dcard img{height:90px}
+  .dcard .nm{font-size:12px}
   .why{padding:22px 18px;margin-top:32px}
   .why b{font-size:16px}
   .why p{font-size:14px}
@@ -523,23 +535,18 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
         <div><h3>気になる味から、<br>自由にお試しください</h3><p class="desc">飲む順番に決まりはありません。パッケージの色や名前を見て、気になった味からどうぞ。</p></div>
       </div>
       <div class="point-body">
-        <ul class="ways">
-          <li class="rv" style="--i:0">
-            <span class="ways-pk"><img src="img/pk-mik.webp" alt="" loading="lazy"></span>
-            <b>気分で選ぶ</b>
-            <p>今日の気分に合いそうな味を選んで。</p>
-          </li>
-          <li class="rv" style="--i:1">
-            <span class="ways-pk"><img src="img/pk-ume.webp" alt="" loading="lazy"><img src="img/pk-zak.webp" alt="" loading="lazy"><img src="img/pk-wak.webp" alt="" loading="lazy"></span>
-            <b>1日1包ずつ</b>
-            <p>6日間、毎日ちがう味を楽しむ。</p>
-          </li>
-          <li class="rv" style="--i:2">
-            <span class="ways-pk"><img src="img/pk-std.webp" alt="" loading="lazy"><img src="img/pk-zak.webp" alt="" loading="lazy"></span>
-            <b>2つ並べて</b>
-            <p>2包を一緒に開けて、味のちがいをくらべる。</p>
-          </li>
-        </ul>
+        <div class="days">
+          <p class="days-cap rv">たとえば、こんな6日間</p>
+          <ol>
+            <li class="mik rv" style="--i:0"><span class="day">DAY<b>1</b></span><div class="dcard"><img src="img/pk-mik.webp" alt="" loading="lazy"><span class="nm">ミカン</span></div></li>
+            <li class="zak rv" style="--i:1"><span class="day">DAY<b>2</b></span><div class="dcard"><img src="img/pk-zak.webp" alt="" loading="lazy"><span class="nm">ザクローズ</span></div></li>
+            <li class="std rv" style="--i:2"><span class="day">DAY<b>3</b></span><div class="dcard"><img src="img/pk-std.webp" alt="" loading="lazy"><span class="nm">スタンダード</span></div></li>
+            <li class="wak rv" style="--i:3"><span class="day">DAY<b>4</b></span><div class="dcard"><img src="img/pk-wak.webp" alt="" loading="lazy"><span class="nm">濃縮和漢発酵</span></div></li>
+            <li class="ume rv" style="--i:4"><span class="day">DAY<b>5</b></span><div class="dcard"><img src="img/pk-ume.webp" alt="" loading="lazy"><span class="nm">梅</span></div></li>
+            <li class="std rv" style="--i:5"><span class="day">DAY<b>6</b></span><div class="dcard"><img src="img/pk-std.webp" alt="" loading="lazy"><span class="nm">スタンダード</span></div></li>
+          </ol>
+          <p class="days-note rv">※ 上はひとつの例です。1日1包ずつ、気になる味から自由な順番でどうぞ。</p>
+        </div>
 
         <div class="why rv">
           <b>スタンダードが2包入っている理由</b>
