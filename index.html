@@ -121,6 +121,10 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 .slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .5s ease,visibility 0s .5s}
 .slide.on{opacity:1;visibility:visible;transition:opacity .5s ease}
 .no-js .slide:first-child{opacity:1;visibility:visible}
+/* 看板は静止表示（動かさない） */
+.hero .slide .pk,.hero .chip,.hero .chip span{animation:none !important;opacity:1;transform:translateX(calc(-50% + var(--x,0px) * var(--k))) rotate(var(--r,0deg))}
+.hero .chip,.hero .chip span{transform:none}
+.hero .fill .ch{color:var(--ink);transition:none}
 .slide .pill{border-color:var(--c,var(--ink));color:var(--c,var(--ink))}
 .slide h1,.slide .ttl{
   margin-top:26px;
@@ -449,60 +453,7 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
         </div>
       </div>
 
-      <div class="slide std">
-        <span class="pill">スタンダード</span>
-        <p class="ttl"><span class="fill">まずは、いちばん</span><br><span class="fill">定番の味から。</span></p>
-        <div class="stage">
-          <img class="pk" src="img/pk-std.webp" alt="スタンダード" style="--h:410px;--x:-60px;--r:-4deg;--i:0;--z:2">
-          <img class="pk" src="img/pk-std.webp" alt="" style="--h:370px;--x:70px;--r:6deg;--b:6px;--i:1">
-          <p class="chip" style="--cx:8%;--cy:30%;--i:0"><span>BOXに<b>2包入り</b></span></p>
-          <p class="chip round" style="--cx:70%;--cy:18%;--i:1"><span>優光泉の基本の味</span></p>
-        </div>
-      </div>
-
-      <div class="slide mik">
-        <span class="pill">ミカン</span>
-        <p class="ttl"><span class="fill">やさしい甘さで、</span><br><span class="fill">続けやすい新しい味。</span></p>
-        <div class="stage">
-          <img class="pk" src="img/pk-mik.webp" alt="ミカン" style="--h:410px;--i:0">
-          <p class="chip" style="--cx:10%;--cy:34%;--i:0"><span>飲む順番<b>3包目</b></span></p>
-          <p class="chip round" style="--cx:68%;--cy:22%;--i:1"><span>果物の味は、ここから</span></p>
-        </div>
-      </div>
-
-      <div class="slide ume">
-        <span class="pill">梅</span>
-        <p class="ttl"><span class="fill">スタンダードと並ぶ、</span><br><span class="fill">もうひとつの定番。</span></p>
-        <div class="stage">
-          <img class="pk" src="img/pk-ume.webp" alt="梅" style="--h:410px;--i:0">
-          <p class="chip" style="--cx:10%;--cy:30%;--i:0"><span>飲む順番<b>2包目</b></span></p>
-          <p class="chip round" style="--cx:68%;--cy:20%;--i:1"><span>スタンダードとくらべて</span></p>
-        </div>
-      </div>
-
-      <div class="slide zak">
-        <span class="pill">ザクローズ</span>
-        <p class="ttl"><span class="fill">ザクロを使った、</span><br><span class="fill">果物の味わいの一杯。</span></p>
-        <div class="stage">
-          <img class="pk" src="img/pk-zak.webp" alt="ザクローズ" style="--h:410px;--i:0">
-          <p class="chip" style="--cx:10%;--cy:32%;--i:0"><span>飲む順番<b>4包目</b></span></p>
-          <p class="chip round" style="--cx:68%;--cy:20%;--i:1"><span>ミカンとくらべて</span></p>
-        </div>
-      </div>
-
-      <div class="slide wak">
-        <span class="pill">濃縮和漢発酵</span>
-        <p class="ttl"><span class="fill">「まずそう」の常識を、</span><br><span class="fill">くつがえす和漢の味。</span></p>
-        <div class="stage">
-          <img class="pk" src="img/pk-wak.webp" alt="濃縮和漢発酵" style="--h:410px;--i:0">
-          <p class="chip" style="--cx:10%;--cy:30%;--i:0"><span>飲む順番<b>5包目</b></span></p>
-          <p class="chip round" style="--cx:68%;--cy:20%;--i:1"><span>いちばんの個性派</span></p>
-        </div>
-      </div>
-
     </div>
-
-    <div class="dots-nav" id="dotsNav" aria-label="スライドの切り替え"></div>
 
     <div class="hero-buy">
       <p class="price"><span class="num">1,000</span><span class="u">円</span><span class="u2">ポッキリ</span><small>税込・送料無料</small></p>
@@ -718,52 +669,12 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
     })(el);
   }
   document.querySelectorAll(".split").forEach(splitChars);
-  document.querySelectorAll(".slide h1, .slide .ttl").forEach(splitChars);
 
   /* スクロールで表示 */
   var io = new IntersectionObserver(function(es){
     es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("is-in"); io.unobserve(e.target); } });
   },{rootMargin:"0px 0px -12% 0px"});
   document.querySelectorAll(".rv,.pop,.split,.draw").forEach(function(el){ io.observe(el); });
-
-  /* FVスライド */
-  var slides = document.querySelectorAll(".slide");
-  var nav = document.getElementById("dotsNav");
-  var cur = 0, timer = null, paused = reduce;
-  var names = ["飲みくらべBOX","スタンダード","ミカン","梅","ザクローズ","濃縮和漢発酵"];
-  var dots = [].map.call(slides, function(s, i){
-    var b = document.createElement("button");
-    b.className = "d" + (i === 0 ? " on" : "");
-    b.setAttribute("aria-label", names[i]);
-    b.addEventListener("click", function(){ go(i); restart(); });
-    nav.appendChild(b);
-    return b;
-  });
-  var pause = document.createElement("button");
-  pause.className = "pause" + (paused ? " paused" : "");
-  pause.setAttribute("aria-label", "スライドの一時停止・再生");
-  pause.innerHTML = "<i></i><i></i>";
-  pause.addEventListener("click", function(){
-    paused = !paused;
-    pause.classList.toggle("paused", paused);
-    restart();
-  });
-  nav.appendChild(pause);
-
-  function go(i){
-    if(i === cur) return;
-    slides[cur].classList.remove("on");
-    dots[cur].classList.remove("on");
-    cur = i;
-    void slides[cur].offsetWidth; /* アニメーションをやり直す */
-    slides[cur].classList.add("on");
-    dots[cur].classList.add("on");
-  }
-  function restart(){
-    clearInterval(timer);
-    if(!paused){ timer = setInterval(function(){ go((cur + 1) % slides.length); }, 4800); }
-  }
-  restart();
 
   /* FVを過ぎたら固定バー */
   var bar = document.getElementById("bar");
