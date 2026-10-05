@@ -220,22 +220,13 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 .flavor-notes li{display:grid;grid-template-columns:160px 1fr;gap:20px;padding:14px 4px;border-bottom:1px solid var(--line);font-size:16px}
 .flavor-notes b{font-weight:900;color:var(--c)}
 
-/* POINT 02：すごろく */
-.route{margin:56px auto 0;max-width:900px;position:relative}
-.route svg{position:absolute;left:0;top:36px;width:100%;height:40px;z-index:0}
-.route svg line{stroke:var(--ink);stroke-width:2.5;stroke-linecap:round}
-.route ol{list-style:none;display:grid;grid-template-columns:repeat(6,1fr);gap:14px;position:relative;z-index:1}
-.route li{text-align:center}
-.route .tag{display:block;height:22px;font-size:13px;font-weight:900;letter-spacing:.1em}
-.route .no{
-  width:52px;height:52px;margin:8px auto 0;border-radius:50%;
-  background:#fff;border:2px solid var(--ink);
-  display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;
-}
-.route .sq{margin-top:22px;border:2px solid var(--ink);border-radius:14px;background:#fff;padding:14px 8px 12px}
-.route .sq img{height:110px;width:auto;margin:0 auto}
-.route .sq b{display:block;margin-top:8px;font-size:14px;font-weight:900;color:var(--c);line-height:1.4}
-.route .sq small{display:block;margin-top:4px;font-size:12px;line-height:1.6;color:var(--muted);font-weight:500}
+/* POINT 02：自由な飲み方 */
+.ways{margin:48px auto 0;max-width:900px;list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.ways li{border:2px solid var(--ink);border-radius:16px;background:#fff;padding:26px 20px 24px}
+.ways-pk{height:120px;display:flex;justify-content:center;align-items:flex-end;gap:6px}
+.ways-pk img{height:100%;width:auto}
+.ways b{display:block;margin-top:18px;font-size:19px;font-weight:900}
+.ways p{margin-top:6px;font-size:15px;line-height:1.75}
 .why{
   margin:44px auto 0;max-width:760px;text-align:left;
   background:var(--bg);border-radius:18px;padding:28px 32px;
@@ -373,14 +364,11 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
   .dia-list .ct{font-size:10px;padding:1px 7px;top:-11px;right:-4px}
   .flavor-notes li{grid-template-columns:1fr;gap:2px;font-size:14px;padding:12px 2px}
 
-  .route{margin-top:40px}
-  .route svg{display:none}
-  .route ol{grid-template-columns:repeat(3,1fr);gap:22px 10px}
-  .route .no{width:42px;height:42px;font-size:18px}
-  .route .sq{margin-top:12px;padding:10px 4px}
-  .route .sq img{height:86px}
-  .route .sq b{font-size:13px}
-  .route .sq small{font-size:11px}
+  .ways{grid-template-columns:1fr;gap:12px;margin-top:32px}
+  .ways li{display:grid;grid-template-columns:96px 1fr;gap:4px 16px;align-items:center;text-align:left;padding:18px 16px}
+  .ways-pk{height:76px;grid-row:1 / 3;gap:3px}
+  .ways b{margin-top:0;font-size:17px}
+  .ways p{margin-top:0;font-size:14px}
   .why{padding:22px 18px;margin-top:32px}
   .why b{font-size:16px}
   .why p{font-size:14px}
@@ -509,7 +497,7 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
       </div>
 
       <ul class="flavor-notes">
-        <li class="std rv"><b>スタンダード</b><span>いちばん定番の、優光泉の基本の味。最初と最後に飲むので2包入り。</span></li>
+        <li class="std rv"><b>スタンダード</b><span>いちばん定番の、優光泉の基本の味。ほかの味とくらべる基準に2包入り。</span></li>
         <li class="mik rv"><b>ミカン</b><span>やさしい甘さで続けやすい、新しい味。</span></li>
         <li class="ume rv"><b>梅</b><span>スタンダードと並ぶ、定番の味。</span></li>
         <li class="zak rv"><b>ザクローズ</b><span>ザクロを使った、果物の味わいの一杯。</span></li>
@@ -522,29 +510,31 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
     <div class="point panel">
       <div class="point-head rv">
         <p class="point-no">たのしみ<b>2</b></p>
-        <div><h3>飲む順番が決まっているから、<br>味のちがいが分かりやすい</h3><p class="desc">なじみのある味から、だんだん個性の強い味へ。この順番で飲みすすめると、それぞれの味のちがいがよく分かります。</p></div>
+        <div><h3>気になる味から、<br>自由にお試しください</h3><p class="desc">飲む順番に決まりはありません。パッケージの色や名前を見て、気になった味からどうぞ。</p></div>
       </div>
       <div class="point-body">
+        <ul class="ways">
+          <li class="rv" style="--i:0">
+            <span class="ways-pk"><img src="img/pk-mik.webp" alt="" loading="lazy"></span>
+            <b>気分で選ぶ</b>
+            <p>今日の気分に合いそうな味を選んで。</p>
+          </li>
+          <li class="rv" style="--i:1">
+            <span class="ways-pk"><img src="img/pk-ume.webp" alt="" loading="lazy"><img src="img/pk-zak.webp" alt="" loading="lazy"><img src="img/pk-wak.webp" alt="" loading="lazy"></span>
+            <b>1日1包ずつ</b>
+            <p>6日間、毎日ちがう味を楽しむ。</p>
+          </li>
+          <li class="rv" style="--i:2">
+            <span class="ways-pk"><img src="img/pk-std.webp" alt="" loading="lazy"><img src="img/pk-zak.webp" alt="" loading="lazy"></span>
+            <b>2つ並べて</b>
+            <p>2包を一緒に開けて、味のちがいをくらべる。</p>
+          </li>
+        </ul>
 
-      <div class="route">
-        <svg viewBox="0 0 900 40" preserveAspectRatio="none" aria-hidden="true">
-          <line x1="75" y1="20" x2="825" y2="20" style="--len:760"/>
-        </svg>
-        <ol>
-          <li class="std"><span class="tag">START</span><span class="no" style="--i:0">1</span><div class="sq rv" style="--i:0"><img src="img/pk-std.webp" alt="" loading="lazy"><b>スタンダード</b><small>まずは基準の味</small></div></li>
-          <li class="ume"><span class="tag"></span><span class="no" style="--i:1">2</span><div class="sq rv" style="--i:1"><img src="img/pk-ume.webp" alt="" loading="lazy"><b>梅</b><small>定番のもう一方</small></div></li>
-          <li class="mik"><span class="tag"></span><span class="no" style="--i:2">3</span><div class="sq rv" style="--i:2"><img src="img/pk-mik.webp" alt="" loading="lazy"><b>ミカン</b><small>やさしい甘さ</small></div></li>
-          <li class="zak"><span class="tag"></span><span class="no" style="--i:3">4</span><div class="sq rv" style="--i:3"><img src="img/pk-zak.webp" alt="" loading="lazy"><b>ザクローズ</b><small>果物どうしで</small></div></li>
-          <li class="wak"><span class="tag"></span><span class="no" style="--i:4">5</span><div class="sq rv" style="--i:4"><img src="img/pk-wak.webp" alt="" loading="lazy"><b>濃縮和漢発酵</b><small>個性派の味</small></div></li>
-          <li class="std"><span class="tag">GOAL</span><span class="no" style="--i:5">6</span><div class="sq rv" style="--i:5"><img src="img/pk-std.webp" alt="" loading="lazy"><b>スタンダード</b><small>最初の味へ戻る</small></div></li>
-        </ol>
-      </div>
-
-      <div class="why rv">
-        <b>スタンダードが2包入っている理由</b>
-        <p>最初と最後に同じ味を飲むと、ほかの4つの味を知ったあとで、最初の味がどう感じられるかが分かります。最初とちがって感じたら、それも飲みくらべならではの発見です。</p>
-      </div>
-      <p class="note-cap">※ 順番は自由です。1日1包ずつでも、何包かまとめて飲みくらべても楽しめます。</p>
+        <div class="why rv">
+          <b>スタンダードが2包入っている理由</b>
+          <p>スタンダードは、優光泉のいちばん定番の味。ほかの味とくらべるときの基準として、2包入れています。</p>
+        </div>
       </div>
     </div>
 
