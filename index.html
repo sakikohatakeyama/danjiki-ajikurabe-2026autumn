@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>秋の優光泉 味くらべフェア｜5つの味の飲みくらべBOX 1,000円ポッキリ｜断食道場shop</title>
-<meta name="description" content="スタンダード、ミカン、梅、ザクローズ、濃縮和漢発酵。優光泉の5つの味を、個包装6包で飲みくらべ。秋の期間限定、1,000円ポッキリ。">
+<meta name="description" content="スタンダード、ミカン、梅、ザクローズ、濃縮和漢発酵。優光泉の5つの味を、個包装6包で飲みくらべ。秋の期間限定、数量限定100個で1,000円ポッキリ。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
 /* =========================================================
    秋の優光泉 味くらべフェア ／ 5つの味の飲みくらべBOX（v4）
@@ -40,7 +40,7 @@ html{scroll-behavior:smooth}
 body{
   background:var(--bg);
   color:var(--ink);
-  font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
+  font-family:"Jost","Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
   font-weight:500;
   font-size:17px;
   line-height:1.9;
@@ -178,6 +178,17 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 .price .u2{font-size:26px;margin-left:4px}
 .price small{font-size:14px;font-weight:700;color:var(--muted);margin-left:10px}
 
+.limit{
+  display:inline-flex;align-items:baseline;gap:4px;
+  background:var(--ink);color:#fff;border-radius:999px;
+  font-size:15px;font-weight:700;letter-spacing:.06em;padding:5px 20px 6px;
+}
+.limit b{font-size:22px;font-weight:600;letter-spacing:0;line-height:1}
+.hero-limit{margin-top:24px}
+.hero-limit + .hero-buy{margin-top:18px}
+.buy .limit{display:flex;width:max-content;margin:16px auto 0}
+.bar-t b em{font-style:normal;font-size:12px;font-weight:700;background:#fff;color:var(--ink);border-radius:999px;padding:1px 10px;margin-left:10px;vertical-align:2px}
+
 /* ---------------- ABOUT ---------------- */
 .about{padding:150px 0 40px}
 .about-ttl{margin-top:26px;font-size:44px;font-weight:900;line-height:1.4;letter-spacing:.06em}
@@ -297,7 +308,6 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 .buy .panel{padding:64px 40px 52px;text-align:center}
 .buy-pks{height:260px;display:flex;justify-content:center;align-items:flex-end;gap:10px}
 .buy-pks img{height:100%;width:auto}
-.buy-pks img:nth-child(odd){height:88%}
 .buy-ttl{margin-top:36px;font-size:clamp(24px,2.4vw,30px);font-weight:900}
 .buy .price{justify-content:center;margin-top:16px}
 .buy .price .num{font-size:clamp(72px,8vw,104px)}
@@ -356,6 +366,9 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
   .price .num{font-size:54px}
   .price .u,.price .u2{font-size:22px}
   .price small{display:block;width:100%;margin:8px 0 0;text-align:center}
+  .limit{font-size:13px;padding:4px 16px 5px}
+  .limit b{font-size:19px}
+  .bar-t b em{font-size:10px;padding:0 7px;margin-left:6px}
   .hero-buy .price{flex-wrap:wrap;justify-content:center}
 
   .about{padding:100px 0 24px}
@@ -435,7 +448,7 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
 <div class="bar" id="bar">
   <div class="bar-in">
     <img class="bar-pk" src="img/pk-std.webp" alt="" width="360" height="1313">
-    <p class="bar-t"><span>秋の優光泉 味くらべフェア</span><b>飲みくらべBOX<br class="sp"> 1,000円ポッキリ</b></p>
+    <p class="bar-t"><span>秋の優光泉 味くらべフェア</span><b>飲みくらべBOX<br class="sp"> 1,000円ポッキリ<em>限定100個</em></b></p>
     <!-- BOX_URL -->
     <a href="https://item.rakuten.co.jp/danjiki-dojo/c/0000000211/">購入する</a>
   </div>
@@ -463,6 +476,7 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
 
     </div>
 
+    <p class="hero-limit"><span class="limit">数量限定<b>100</b>個</span></p>
     <div class="hero-buy">
       <p class="price"><span class="num">1,000</span><span class="u">円</span><span class="u2">ポッキリ</span><small>税込・送料無料</small></p>
       <!-- BOX_URL -->
@@ -632,6 +646,7 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
       <h2 class="buy-ttl rv">秋の優光泉<br class="sp"> 飲みくらべBOX</h2>
       <p class="price rv" style="--i:1"><span class="num">1,000</span><span class="u">円</span><span class="u2">ポッキリ</span></p>
       <p class="buy-tax rv" style="--i:2">税込・送料無料 ／ 期間限定</p>
+      <p class="limit rv" style="--i:2">数量限定<b>100</b>個</p>
       <!-- BOX_URL -->
       <a class="btn" href="https://item.rakuten.co.jp/danjiki-dojo/c/0000000211/">飲みくらべBOXを買う</a>
 
@@ -639,12 +654,12 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
         <dt>内容</dt><dd>ポケット優光泉 20ml × 6包</dd>
         <dt>味</dt><dd>スタンダード 2包、ミカン 1包、梅 1包、ザクローズ 1包、濃縮和漢発酵 1包</dd>
         <dt>価格</dt><dd>1,000円（税込・送料無料）</dd>
-        <dt>販売</dt><dd>秋の優光泉 味くらべフェア 期間限定</dd>
+        <dt>販売</dt><dd>秋の優光泉 味くらべフェア 期間限定・数量限定100個</dd>
       </dl>
       <p class="buy-notes">
         ※ 飲み方・保存方法は、商品に記載の表示をご確認ください。<br>
         ※ パッケージデザインは変更になる場合があります。<br>
-        ※ 期間中でも、予定数量に達しだい販売を終了します。
+        ※ 限定100個のため、期間中でもなくなりしだい販売を終了します。
       </p>
     </div>
   </div>
