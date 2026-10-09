@@ -152,8 +152,9 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 .slide.on{opacity:1;visibility:visible;transition:opacity .5s ease}
 .no-js .slide:first-child{opacity:1;visibility:visible}
 /* 看板は静止表示（動かさない） */
-.hero .slide .pk,.hero .chip span{animation:none !important;opacity:1}
-.hero .slide .pk{transform:translateX(calc(-50% + var(--x,0px) * var(--k))) rotate(var(--r,0deg))}
+.hero .chip span{animation:none !important;opacity:1}
+/* 商品：ページを開いたときに1回だけ、中央から順に下から立ち上がる */
+.hero .slide .pk{animation:pkIn 1s var(--spring) both;animation-delay:calc(var(--i,0) * 140ms + 100ms)}
 .hero .chip span{transform:none}
 /* 吹き出し：ページを開いたときに下からふわっと浮き出る（1回だけ） */
 .hero .chip{opacity:0;transform:translateY(18px);animation:chipUp .8s var(--ease) both;animation-delay:calc(var(--i,0) * 220ms + 300ms) !important}
@@ -216,7 +217,7 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
   background:var(--leaf);color:#fff;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   font-size:14px;font-weight:900;line-height:1.2;letter-spacing:.04em;
-  opacity:0;transform:translateY(18px);animation:chipUp .8s var(--ease) .5s both;
+  opacity:0;transform:translateY(18px);animation:chipUp .8s var(--ease) .9s both;
 }
 .ring b{font-size:34px;font-weight:700;line-height:1.05}
 .price{display:flex;align-items:baseline;gap:6px;font-weight:900;line-height:1}
@@ -410,7 +411,7 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
   .badge{animation:none}
   .hero .chip{animation:none !important;opacity:1;transform:none}
   .js .rv{opacity:1;transform:none;transition:none}
-  .slide.on .pk,.chip span{animation:none}
+  .slide.on .pk,.hero .slide .pk,.chip span{animation:none}
   .fill .ch{transition:none}
 }
 
@@ -457,12 +458,13 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
   .price .num{font-size:54px}
   .price .u,.price .u2{font-size:22px}
   .price small{display:block;width:100%;margin:8px 0 0;text-align:center}
-  .hero-season{font-size:17px;margin-bottom:6px}
+  .hero-season{font-size:16px;margin-bottom:6px}
   .hero-price{padding:0}
   .hero-price .price .num{font-size:60px}
   .hero-price .price .u,.hero-price .price .u2{font-size:24px}
   .hero-price .price small{font-size:15px;margin:10px 0 0}
-  .ring{width:74px;height:74px;right:-6px;top:-90px;font-size:10px}
+  .hero-price{align-self:stretch}
+  .ring{width:70px;height:70px;right:-12px;top:-50px;font-size:10px}
   .ring b{font-size:23px}
   .hero-buy{gap:22px}
   .badge{width:88px;height:88px;top:18px;right:14px;font-size:10px}
@@ -579,11 +581,11 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
         <p class="red-limit">数量限定<b>100</b>セット</p>
         <h1>5つの味を<br class="sp">飲みくらべ</h1>
         <div class="stage">
-          <img class="pk mik" src="img/pk-mik.webp" alt="" style="--h:300px;--x:-250px;--r:-14deg;--b:10px;--i:1">
-          <img class="pk ume" src="img/pk-ume.webp" alt="" style="--h:340px;--x:-125px;--r:-7deg;--b:4px;--i:2;--z:2">
+          <img class="pk mik" src="img/pk-mik.webp" alt="" style="--h:300px;--x:-250px;--r:-14deg;--b:10px;--i:2">
+          <img class="pk ume" src="img/pk-ume.webp" alt="" style="--h:340px;--x:-125px;--r:-7deg;--b:4px;--i:1;--z:2">
           <img class="pk std" src="img/pk-std.webp" alt="ポケット優光泉 5つの味" style="--h:400px;--x:0px;--i:0;--z:3">
-          <img class="pk zak" src="img/pk-zak.webp" alt="" style="--h:340px;--x:125px;--r:7deg;--b:4px;--i:2;--z:2">
-          <img class="pk wak" src="img/pk-wak.webp" alt="" style="--h:300px;--x:250px;--r:14deg;--b:10px;--i:1">
+          <img class="pk zak" src="img/pk-zak.webp" alt="" style="--h:340px;--x:125px;--r:7deg;--b:4px;--i:1;--z:2">
+          <img class="pk wak" src="img/pk-wak.webp" alt="" style="--h:300px;--x:250px;--r:14deg;--b:10px;--i:2">
         </div>
       </div>
 
