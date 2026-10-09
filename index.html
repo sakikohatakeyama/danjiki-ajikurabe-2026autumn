@@ -38,6 +38,7 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
+[id]{scroll-margin-top:96px}
 body{
   background:var(--bg);
   color:var(--ink);
@@ -90,6 +91,36 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
   background:linear-gradient(var(--ink),var(--ink)) 0 100%/100% 1px no-repeat;padding-bottom:2px;
 }
 
+/* ---------------- メニュー ---------------- */
+.menu-btn{
+  position:fixed;z-index:70;top:14px;right:16px;
+  width:52px;height:52px;border-radius:50%;background:var(--ink);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
+}
+.menu-btn i{display:block;width:20px;height:2px;background:#fff;border-radius:2px;transition:transform .3s,opacity .3s}
+.menu-btn.open i:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-btn.open i:nth-child(2){opacity:0}
+.menu-btn.open i:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.menu{
+  position:fixed;inset:0;z-index:60;background:rgba(31,31,31,.96);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;visibility:hidden;transition:opacity .3s,visibility 0s .3s;
+}
+.menu.open{opacity:1;visibility:visible;transition:opacity .3s}
+.menu ul{list-style:none;width:min(420px,84vw)}
+.menu li{border-bottom:1px solid #444}
+.menu a{display:block;padding:18px 4px;color:#fff;font-size:18px;font-weight:700;letter-spacing:.04em}
+.menu a:hover{color:var(--bg)}
+.scroll-top{
+  position:fixed;z-index:40;right:16px;bottom:20px;
+  width:52px;height:52px;border-radius:50%;background:#fff;border:2px solid var(--ink);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-size:10px;font-weight:900;letter-spacing:.06em;line-height:1;
+  opacity:0;visibility:hidden;transition:opacity .3s,visibility 0s .3s;
+}
+.scroll-top::before{content:"";width:8px;height:8px;border-top:2px solid var(--ink);border-left:2px solid var(--ink);transform:rotate(45deg);margin:4px 0 4px}
+.scroll-top.show{opacity:1;visibility:visible;transition:opacity .3s}
+
 /* ---------------- ヘッダー・固定バー ---------------- */
 .head{
   max-width:800px;margin:0 auto;padding:20px 0;
@@ -99,7 +130,7 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 .head span{font-size:13px;font-weight:500}
 .head .logo{display:block;background:#fff;border-radius:12px;padding:8px 14px;transition:opacity .2s}
 .head .logo img{height:30px;width:auto}
-footer img{width:96px;height:auto;margin:0 auto;border-radius:14px}
+
 .head .logo:hover{opacity:.6}
 .bar{
   position:fixed;left:0;right:0;top:0;z-index:50;
@@ -196,7 +227,7 @@ footer img{width:96px;height:auto;margin:0 auto;border-radius:14px}
 .hero-season{font-size:22px;font-weight:900;letter-spacing:.1em;margin-bottom:10px}
 .price small{font-size:14px;font-weight:700;color:var(--muted);margin-left:10px}
 
-.bar-t b em{font-style:normal;font-size:12px;font-weight:700;background:#fff;color:var(--ink);border-radius:999px;padding:1px 10px;margin-left:10px;vertical-align:2px}
+.bar-t b em{white-space:nowrap;font-style:normal;font-size:12px;font-weight:700;background:#fff;color:var(--ink);border-radius:999px;padding:1px 10px;margin-left:10px;vertical-align:2px}
 
 .red-limit{color:var(--red);font-size:24px;font-weight:900;letter-spacing:.08em;line-height:1.2;margin-bottom:10px}
 .red-limit b{font-size:44px;font-weight:700;letter-spacing:.02em;margin:0 4px;vertical-align:-2px}
@@ -306,14 +337,25 @@ footer img{width:96px;height:auto;margin:0 auto;border-radius:14px}
 .next .h2{margin-top:22px}
 .next-lead{margin-top:20px;font-size:17px;max-width:680px}
 .items{margin-top:48px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.item{display:block;padding:24px 12px 22px;text-align:center;transition:box-shadow .3s}
-.item:hover{box-shadow:0 0 0 2px var(--ink)}
+.item{display:flex;flex-direction:column;padding:24px 12px 16px;text-align:center}
 .item .imgs{height:170px;display:flex;justify-content:center;align-items:flex-end;gap:8px}
 .item .imgs img{height:100%;width:auto}
-.item .t{display:block;margin-top:18px;font-size:17px;font-weight:900;line-height:1.5}
+.item .t{margin-top:18px;font-size:17px;font-weight:900;line-height:1.5}
 .item .t i{font-style:normal;color:var(--c)}
 .item .s{display:block;margin-top:4px;font-size:13px;color:var(--muted)}
-.item .go{display:inline-block;margin-top:14px;font-size:14px;font-weight:700;background:linear-gradient(var(--ink),var(--ink)) 0 100%/100% 1px no-repeat;padding-bottom:2px}
+.types{margin-top:auto;padding-top:14px;display:grid;gap:8px}
+.types a{
+  display:flex;justify-content:space-between;align-items:center;gap:6px;
+  border:2px solid var(--ink);border-radius:14px;padding:8px 12px 8px 14px;
+  font-size:14px;line-height:1.35;text-align:left;transition:background .2s,color .2s;
+}
+.types a::after{content:"";flex:none;width:7px;height:7px;border-top:2px solid currentColor;border-right:2px solid currentColor;transform:rotate(45deg)}
+.types b{font-weight:900}
+.types small{display:block;font-size:11px;color:var(--muted)}
+.types a:hover{background:var(--ink);color:#fff}
+.types a:hover small{color:#ddd}
+.next-cap{margin-top:20px;font-size:14px}
+.next-cap a{font-weight:700;text-decoration:underline;text-underline-offset:3px}
 
 /* ---------------- 購入 ---------------- */
 .buy{padding:110px 0 120px}
@@ -346,10 +388,21 @@ footer img{width:96px;height:auto;margin:0 auto;border-radius:14px}
 .spec dt,.spec dd{padding:14px 0;border-bottom:1px solid var(--line);font-size:15px}
 .spec dt{font-weight:900}
 .buy-notes{margin:24px auto 0;max-width:720px;text-align:left;font-size:13px;color:var(--muted);line-height:2}
-footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padding:0 0 48px}
+.foot{background:#fff;text-align:center;padding:56px 20px 44px}
+.to-top-btn{
+  display:inline-flex;align-items:center;gap:12px;
+  border:2px solid var(--ink);border-radius:999px;padding:14px 32px;
+  font-size:15px;font-weight:900;letter-spacing:.06em;transition:background .2s,color .2s;
+}
+.to-top-btn::before{content:"";width:8px;height:8px;border-top:2px solid currentColor;border-left:2px solid currentColor;transform:rotate(45deg);margin-top:4px}
+.to-top-btn:hover{background:var(--ink);color:#fff}
+.foot-logo{display:block;width:max-content;margin:40px auto 0}
+.foot-logo img{height:36px;width:auto}
+.foot-c{margin-top:14px;font-size:12px;color:var(--muted);letter-spacing:.14em}
 
 @media (max-width:860px) and (min-width:768px){
   .wrap,.hero,.head,.bar-in{padding-left:24px;padding-right:24px}
+  .head,.bar-in{padding-right:84px}
 }
 
 @media (prefers-reduced-motion:reduce){
@@ -373,12 +426,16 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
   .btn{width:100%;font-size:17px;padding:20px}
   .pill{font-size:14px;padding:8px 18px 9px}
 
-  .head{padding:16px 20px;font-size:13px}
+  .head{padding:16px 70px 16px 20px;font-size:13px}
   .wrap{padding:0 16px}
   .head span{display:none}
+  .menu-btn{top:10px;right:12px;width:46px;height:46px}
+  .head{padding-right:70px}
+  .bar-in{padding-right:66px}
+  .scroll-top{right:12px;bottom:14px;width:46px;height:46px}
   .head .logo{padding:6px 10px;border-radius:10px}
   .head .logo img{height:22px}
-  .bar-in{padding:10px 16px;gap:12px}
+  .bar-in{padding:10px 66px 10px 16px;gap:12px}
   .bar-pk{height:38px}
   .bar-t span{display:none}
   .bar-t b{font-size:14px}
@@ -410,7 +467,7 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
   .hero-buy{gap:22px}
   .badge{width:88px;height:88px;top:18px;right:14px;font-size:10px}
   .badge b{font-size:30px}
-  .bar-t b em{font-size:10px;padding:0 7px;margin-left:6px}
+  .bar-t b em{display:none}
   .hero-buy .price{flex-wrap:wrap;justify-content:center}
 
   .about{padding:100px 0 24px}
@@ -469,7 +526,9 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
   .item{padding:20px 10px 18px;border-radius:20px}
   .item .imgs{height:140px}
   .item .t{font-size:16px;margin-top:14px}
-  .item .s{font-size:11px}
+  .types a{font-size:12px;padding:6px 10px 6px 12px}
+  .types small{font-size:10px}
+  .next-cap{font-size:12px}
 
   .buy{padding:80px 0 90px}
   .buy .panel{padding:48px 18px 40px;border-radius:22px}
@@ -483,7 +542,7 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
 }
 </style>
 </head>
-<body class="no-js">
+<body class="no-js" id="top">
 <script>document.body.classList.replace("no-js","js");</script>
 
 <!-- ======================= 固定バー（FVを過ぎたら表示） ======================= -->
@@ -495,6 +554,19 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
     <a href="https://item.rakuten.co.jp/danjiki-dojo/c/0000000211/">購入する</a>
   </div>
 </div>
+
+<button class="menu-btn" id="menuBtn" aria-label="メニューを開く" aria-expanded="false" aria-controls="menu"><i></i><i></i><i></i></button>
+<nav class="menu" id="menu" aria-label="ページ内メニュー">
+  <ul>
+    <li><a href="#top">特集トップ</a></li>
+    <li><a href="#about">味くらべフェアについて</a></li>
+    <li><a href="#p1">5つの味がぜんぶ入って1,000円</a></li>
+    <li><a href="#p2">気になる味から自由に</a></li>
+    <li><a href="#p3">推し味をチェック</a></li>
+    <li><a href="#next">推し味が決まったら</a></li>
+    <li><a href="#buy">飲みくらべBOXを買う</a></li>
+  </ul>
+</nav>
 
 <header class="head"><a class="logo" href="https://www.rakuten.co.jp/danjiki-dojo/"><img src="img/logo-wide.webp" alt="断食道場ショップ" width="270" height="45"></a><span>秋の優光泉 味くらべフェア</span></header>
 
@@ -532,7 +604,7 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
 <main>
 
 <!-- ======================= ABOUT ======================= -->
-<section class="about">
+<section class="about" id="about">
   <div class="wrap">
     <p class="label rv">ABOUT</p>
     <h2 class="about-ttl rv">秋の優光泉<br class="sp"> 味くらべフェア</h2>
@@ -562,7 +634,7 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
     </div>
 
     <!-- POINT 01 -->
-    <div class="point panel">
+    <div class="point panel" id="p1">
       <div class="point-head rv">
         <p class="point-no">たのしみ<b>1</b></p>
         <div><h3>5つの味がぜんぶ入って、<br>1,000円ポッキリ</h3></div>
@@ -590,7 +662,7 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
     </div>
 
     <!-- POINT 02 -->
-    <div class="point panel">
+    <div class="point panel" id="p2">
       <div class="point-head rv">
         <p class="point-no">たのしみ<b>2</b></p>
         <div><h3>気になる味から、<br>自由にお試しください</h3><p class="desc">飲む順番に決まりはありません。パッケージの色や名前を見て、気になった味からどうぞ。</p></div>
@@ -617,7 +689,7 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
     </div>
 
     <!-- POINT 03 -->
-    <div class="point panel">
+    <div class="point panel" id="p3">
       <div class="point-head rv">
         <p class="point-no">たのしみ<b>3</b></p>
         <div><h3>飲んだら、推し味をチェック</h3><p class="desc">それぞれの味の「好き度」を、丸をタップして5段階でつけてください。いちばん好きな味が、あなたの推し味です。</p></div>
@@ -649,30 +721,47 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
 </section>
 
 <!-- ======================= 推し味が決まったら ======================= -->
-<section class="next">
+<section class="next" id="next">
   <div class="wrap">
     <p class="label rv">AFTER TASTING</p>
     <h2 class="h2">推し味が決まったら、<br>いつもの一杯に。</h2>
-    <p class="next-lead rv">気に入った味は、同じ個包装タイプ（20ml×15包）でどうぞ。いくつか気に入ったら、日によって飲み分けるのもおすすめです。</p>
+    <p class="next-lead rv">気に入った味は、持ち歩きに便利な個包装タイプか、毎日たっぷり飲めるボトルタイプでどうぞ。いくつか気に入ったら、日によって飲み分けるのもおすすめです。</p>
 
     <div class="items">
-      <a class="item panel rv" style="--i:0" href="https://item.rakuten.co.jp/danjiki-dojo/0002/">
+      <div class="item panel rv" style="--i:0">
         <span class="imgs"><img src="img/pk-std.webp" alt="" loading="lazy"><img src="img/pk-ume.webp" alt="" loading="lazy"></span>
-        <span class="t"><i class="std">スタンダード</i>／<i class="ume">梅</i></span><span class="s">ポケット優光泉<br>20ml×15包</span><span class="go">商品を見る</span>
-      </a>
-      <a class="item panel rv" style="--i:1" href="https://item.rakuten.co.jp/danjiki-dojo/7003/">
+        <p class="t"><i class="std">スタンダード</i>／<i class="ume">梅</i></p>
+        <div class="types">
+          <a href="https://item.rakuten.co.jp/danjiki-dojo/0002/"><span><b>個包装</b><small>20ml×15包</small></span></a>
+          <a href="https://item.rakuten.co.jp/danjiki-dojo/0090/"><span><b>ボトル</b><small>600ml</small></span></a>
+        </div>
+      </div>
+      <div class="item panel rv" style="--i:1">
         <span class="imgs"><img src="img/pk-mik.webp" alt="" loading="lazy"></span>
-        <span class="t"><i class="mik">ミカン</i></span><span class="s">みかん味 ポケットタイプ<br>20ml×15包</span><span class="go">商品を見る</span>
-      </a>
-      <a class="item panel rv" style="--i:2" href="https://item.rakuten.co.jp/danjiki-dojo/0058/">
+        <p class="t"><i class="mik">ミカン</i></p>
+        <div class="types">
+          <a href="https://item.rakuten.co.jp/danjiki-dojo/7003/"><span><b>個包装</b><small>20ml×15包</small></span></a>
+          <a href="https://item.rakuten.co.jp/danjiki-dojo/7001/"><span><b>ボトル</b><small>600ml</small></span></a>
+        </div>
+      </div>
+      <div class="item panel rv" style="--i:2">
         <span class="imgs"><img src="img/pk-zak.webp" alt="" loading="lazy"></span>
-        <span class="t"><i class="zak">ザクローズ</i></span><span class="s">ポケット優光泉<br>20ml×15包</span><span class="go">商品を見る</span>
-      </a>
-      <a class="item panel rv" style="--i:3" href="https://item.rakuten.co.jp/danjiki-dojo/0046/">
+        <p class="t"><i class="zak">ザクローズ</i></p>
+        <div class="types">
+          <a href="https://item.rakuten.co.jp/danjiki-dojo/0058/"><span><b>個包装</b><small>20ml×15包</small></span></a>
+          <a href="https://item.rakuten.co.jp/danjiki-dojo/0063/"><span><b>ボトル</b><small>600ml</small></span></a>
+        </div>
+      </div>
+      <div class="item panel rv" style="--i:3">
         <span class="imgs"><img src="img/pk-wak.webp" alt="" loading="lazy"></span>
-        <span class="t"><i class="wak">濃縮和漢発酵</i></span><span class="s">ポケット優光泉<br>20ml×15包</span><span class="go">商品を見る</span>
-      </a>
+        <p class="t"><i class="wak">濃縮和漢発酵</i></p>
+        <div class="types">
+          <a href="https://item.rakuten.co.jp/danjiki-dojo/0046/"><span><b>個包装</b><small>20ml×15包</small></span></a>
+          <a href="https://item.rakuten.co.jp/danjiki-dojo/0037_1/"><span><b>ボトル</b><small>600ml</small></span></a>
+        </div>
+      </div>
     </div>
+    <p class="next-cap rv">※ スタンダード／梅は、たっぷり使える<a href="https://item.rakuten.co.jp/danjiki-dojo/0001/">レギュラーボトル（1200ml）</a>もあります。</p>
   </div>
 </section>
 
@@ -710,7 +799,13 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
 </section>
 
 </main>
-<footer><a href="https://www.rakuten.co.jp/danjiki-dojo/"><img src="img/logo-square.webp" alt="断食道場SHOP" width="96" height="96"></a></footer>
+<a class="scroll-top" id="scrollTop" href="#top" aria-label="特集トップに戻る">TOP</a>
+
+<footer class="foot">
+  <a class="to-top-btn" href="#top">特集トップページに戻る</a>
+  <a class="foot-logo" href="https://www.rakuten.co.jp/danjiki-dojo/"><img src="img/logo-wide.webp" alt="断食道場ショップ" width="270" height="45"></a>
+  <p class="foot-c">秋の優光泉 味くらべフェア</p>
+</footer>
 
 <script>
 (function(){
@@ -721,11 +816,25 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
   },{rootMargin:"0px 0px -12% 0px"});
   document.querySelectorAll(".rv").forEach(function(el){ io.observe(el); });
 
+  /* メニュー */
+  var menuBtn = document.getElementById("menuBtn");
+  var menu = document.getElementById("menu");
+  function setMenu(open){
+    menu.classList.toggle("open", open);
+    menuBtn.classList.toggle("open", open);
+    menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    menuBtn.setAttribute("aria-label", open ? "メニューを閉じる" : "メニューを開く");
+  }
+  menuBtn.addEventListener("click", function(){ setMenu(!menu.classList.contains("open")); });
+  menu.addEventListener("click", function(e){ if(e.target.closest("a") || e.target === menu) setMenu(false); });
+  document.addEventListener("keydown", function(e){ if(e.key === "Escape") setMenu(false); });
+
   /* FVを過ぎたら固定バー */
   var bar = document.getElementById("bar");
   var hero = document.getElementById("hero");
   new IntersectionObserver(function(es){
     bar.classList.toggle("show", !es[0].isIntersecting);
+    document.getElementById("scrollTop").classList.toggle("show", !es[0].isIntersecting);
   }).observe(hero);
 
   /* 推し味ノート */
