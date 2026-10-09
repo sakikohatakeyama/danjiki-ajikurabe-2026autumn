@@ -147,7 +147,7 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 /* ---------------- FV（スライド） ---------------- */
 .hero{max-width:800px;margin:0 auto}
 .hero .panel{padding:44px 32px 36px;text-align:center;overflow:hidden}
-.slides{position:relative;height:600px}
+.slides{position:relative;height:560px}
 .slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .5s ease,visibility 0s .5s}
 .slide.on{opacity:1;visibility:visible;transition:opacity .5s ease}
 .no-js .slide:first-child{opacity:1;visibility:visible}
@@ -164,7 +164,7 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 .slide .pill{border-color:var(--c,var(--ink));color:var(--c,var(--ink))}
 .slide h1,.slide .ttl{
   margin-top:0;
-  font-size:clamp(34px,4vw,52px);font-weight:900;line-height:1.45;letter-spacing:.04em;
+  font-size:clamp(34px,4vw,52px);font-weight:900;line-height:1.3;letter-spacing:.04em;
 }
 .fill .ch{color:#D3D3CF;transition:color .35s ease;transition-delay:calc(var(--n) * 55ms)}
 .slide.on .fill .ch,.no-js .fill .ch{color:var(--ink)}
@@ -230,9 +230,9 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 
 .bar-t b em{white-space:nowrap;font-style:normal;font-size:12px;font-weight:700;background:#fff;color:var(--ink);border-radius:999px;padding:1px 10px;margin-left:10px;vertical-align:2px}
 
-.h1-num{font-size:1.5em;line-height:1;margin-right:.03em}
-.red-limit{color:var(--red);font-size:24px;font-weight:900;letter-spacing:.08em;line-height:1.2;margin-bottom:10px}
-.red-limit b{font-size:44px;font-weight:700;letter-spacing:.02em;margin:0 4px;vertical-align:-2px}
+.h1-num{font-size:1.36em;line-height:1;margin-right:.03em}
+.red-limit{display:inline-block;color:var(--red);border:2px solid var(--red);border-radius:8px;padding:2px 18px 4px;font-size:24px;font-weight:900;letter-spacing:.02em;line-height:1.2;margin-bottom:6px}
+.red-limit b{font-size:44px;font-weight:700;letter-spacing:0;margin:0 3px;vertical-align:-2px}
 
 /* ---------------- ABOUT ---------------- */
 .about{padding:150px 0 40px}
@@ -445,11 +445,12 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 
   .hero{padding:0 12px}
   .hero .panel{padding:36px 16px 28px;border-radius:22px}
-  .slides{height:520px}
-  .red-limit{font-size:22px;margin-bottom:8px}
-  .red-limit b{font-size:44px}
+  .slides{height:540px}
+  .red-limit{font-size:20px;margin-bottom:8px;padding:2px 14px 3px}
+  .red-limit b{font-size:40px}
   .slide h1,.slide .ttl{margin-top:0;font-size:clamp(40px,12.6vw,50px);line-height:1.3}
-  .stage{--k:.7;--kx:.42;height:330px}
+  .stage{--k:.76;--kx:.42;height:350px}
+  .stage .pk.mik,.stage .pk.wak{--kx:.45}
   .stage .pk.ume,.stage .pk.zak{--kx:.5}
   .chip{left:clamp(0px,var(--cx),calc(100% - 158px));top:calc(var(--cy) * .9)}
   .hero .chip.r{left:auto;right:2%}
