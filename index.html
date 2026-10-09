@@ -174,13 +174,26 @@ footer img{width:96px;height:auto;margin:0 auto;border-radius:14px}
 .dots-nav .pause.paused i:first-child{width:0;height:0;background:none;border-left:9px solid var(--ink);border-top:6px solid transparent;border-bottom:6px solid transparent;margin-left:3px}
 .dots-nav .pause.paused i:last-child{display:none}
 
-.hero-buy{margin-top:36px;display:flex;justify-content:center;align-items:center;gap:36px;flex-wrap:wrap}
+.hero-buy{margin-top:28px;display:flex;flex-direction:column;align-items:center;gap:28px}
+.hero-price{position:relative;padding:0 8px}
+.hero-price .price .num{font-size:96px}
+.hero-price .price .u,.hero-price .price .u2{font-size:38px}
+.hero-price .price small{font-size:17px;color:var(--ink);margin-left:14px}
+.ring{
+  position:absolute;z-index:5;right:-104px;top:-40px;
+  width:112px;height:112px;border-radius:50%;
+  background:var(--leaf);color:#fff;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-size:14px;font-weight:900;line-height:1.2;letter-spacing:.04em;
+  opacity:0;transform:translateY(18px);animation:chipUp .8s var(--ease) .5s both;
+}
+.ring b{font-size:34px;font-weight:700;line-height:1.05}
 .price{display:flex;align-items:baseline;gap:6px;font-weight:900;line-height:1}
 .price .num{font-size:64px;letter-spacing:0}
 .price .u{font-size:26px}
 .price .u2{font-size:26px;margin-left:4px}
 .price .cm{font-size:.68em;margin:0 -.06em 0 -.04em}
-.hero-season{font-size:16px;font-weight:900;letter-spacing:.1em;margin-bottom:6px}
+.hero-season{font-size:22px;font-weight:900;letter-spacing:.1em;margin-bottom:10px}
 .price small{font-size:14px;font-weight:700;color:var(--muted);margin-left:10px}
 
 .bar-t b em{font-style:normal;font-size:12px;font-weight:700;background:#fff;color:var(--ink);border-radius:999px;padding:1px 10px;margin-left:10px;vertical-align:2px}
@@ -340,6 +353,7 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
 }
 
 @media (prefers-reduced-motion:reduce){
+  .ring{animation:none;opacity:1;transform:none}
   .badge{animation:none}
   .hero .chip{animation:none !important;opacity:1;transform:none}
   .js .rv{opacity:1;transform:none;transition:none}
@@ -386,7 +400,14 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
   .price .num{font-size:54px}
   .price .u,.price .u2{font-size:22px}
   .price small{display:block;width:100%;margin:8px 0 0;text-align:center}
-  .hero-season{font-size:14px;margin-bottom:4px}
+  .hero-season{font-size:17px;margin-bottom:6px}
+  .hero-price{padding:0}
+  .hero-price .price .num{font-size:60px}
+  .hero-price .price .u,.hero-price .price .u2{font-size:24px}
+  .hero-price .price small{font-size:15px;margin:10px 0 0}
+  .ring{width:74px;height:74px;right:-6px;top:-90px;font-size:10px}
+  .ring b{font-size:23px}
+  .hero-buy{gap:22px}
   .badge{width:88px;height:88px;top:18px;right:14px;font-size:10px}
   .badge b{font-size:30px}
   .bar-t b em{font-size:10px;padding:0 7px;margin-left:6px}
@@ -491,7 +512,6 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
           <img class="pk std" src="img/pk-std.webp" alt="ポケット優光泉 5つの味" style="--h:400px;--x:0px;--i:0;--z:3">
           <img class="pk zak" src="img/pk-zak.webp" alt="" style="--h:340px;--x:125px;--r:7deg;--b:4px;--i:2;--z:2">
           <img class="pk wak" src="img/pk-wak.webp" alt="" style="--h:300px;--x:250px;--r:14deg;--b:10px;--i:1">
-          <p class="chip" style="--cx:6%;--cy:22%;--i:0"><span>5つの味<b>6包入り</b></span></p>
         </div>
       </div>
 
@@ -499,8 +519,9 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
 
     <div class="hero-buy">
       <div class="hero-price">
-        <p class="hero-season">秋の期間限定</p>
+        <p class="hero-season">味くらべフェア限定価格</p>
         <p class="price"><span class="num">1<span class="cm">,</span>000</span><span class="u">円</span><span class="u2">ポッキリ</span><small>送料無料</small></p>
+        <p class="ring"><span>5つの味</span><b>6包</b><span>入り</span></p>
       </div>
       <!-- BOX_URL -->
       <a class="btn" href="https://item.rakuten.co.jp/danjiki-dojo/c/0000000211/">飲みくらべBOXを買う</a>
