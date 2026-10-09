@@ -6,7 +6,7 @@
 - `v3-pop.html` … v3（パッケージ5色のポップなデザイン）
 - `v2-calm.html` … v2（落ち着いた色・CSSイラスト版）
 - `proposal-v1.html` … 社内提案用の初版（2味・ボトル想定）
-- `img/` … パッケージ画像（pk-std / pk-mik / pk-ume / pk-zak / pk-wak.webp）。公開時は一緒にアップしてください
+- `img/` … パッケージ画像（pk-std / pk-mik / pk-ume / pk-zak / pk-wak.webp）、ロゴ（logo-wide / logo-square.webp）。公開時は一緒にアップしてください
 
 ## BOX内容
 ポケット優光泉 20ml × 6包

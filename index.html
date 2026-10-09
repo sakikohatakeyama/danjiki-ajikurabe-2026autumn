@@ -97,7 +97,9 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
   font-size:15px;font-weight:700;letter-spacing:.1em;
 }
 .head span{font-size:13px;font-weight:500}
-.head .logo{transition:opacity .2s}
+.head .logo{display:block;background:#fff;border-radius:12px;padding:8px 14px;transition:opacity .2s}
+.head .logo img{height:30px;width:auto}
+footer img{width:96px;height:auto;margin:0 auto;border-radius:14px}
 .head .logo:hover{opacity:.6}
 .bar{
   position:fixed;left:0;right:0;top:0;z-index:50;
@@ -360,6 +362,8 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
   .head{padding:16px 20px;font-size:13px}
   .wrap{padding:0 16px}
   .head span{display:none}
+  .head .logo{padding:6px 10px;border-radius:10px}
+  .head .logo img{height:22px}
   .bar-in{padding:10px 16px;gap:12px}
   .bar-pk{height:38px}
   .bar-t span{display:none}
@@ -471,7 +475,7 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
   </div>
 </div>
 
-<header class="head"><a class="logo" href="https://www.rakuten.co.jp/danjiki-dojo/">断食道場shop</a><span>秋の優光泉 味くらべフェア</span></header>
+<header class="head"><a class="logo" href="https://www.rakuten.co.jp/danjiki-dojo/"><img src="img/logo-wide.webp" alt="断食道場ショップ" width="270" height="45"></a><span>秋の優光泉 味くらべフェア</span></header>
 
 <!-- ======================= FV ======================= -->
 <section class="hero" id="hero">
@@ -685,7 +689,7 @@ footer{text-align:center;font-size:13px;font-weight:700;letter-spacing:.2em;padd
 </section>
 
 </main>
-<footer><a href="https://www.rakuten.co.jp/danjiki-dojo/">断食道場shop</a></footer>
+<footer><a href="https://www.rakuten.co.jp/danjiki-dojo/"><img src="img/logo-square.webp" alt="断食道場SHOP" width="96" height="96"></a></footer>
 
 <script>
 (function(){
